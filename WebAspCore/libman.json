@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.5.0",
+      "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "library": "gentelella@1.4.0",
+      "destination": "wwwroot/lib/gentelella/"
+    },
+    {
+      "library": "font-awesome@5.13.0",
+      "destination": "wwwroot/lib/font-awesome/"
+    },
+    {
+      "library": "Chart.js@2.9.3",
+      "destination": "wwwroot/lib/Chart.js/"
+    },
+    {
+      "library": "flot@0.8.3",
+      "destination": "wwwroot/lib/flot/"
+    },
+    {
+      "library": "animate.css@3.7.2",
+      "destination": "wwwroot/lib/animate.css/"
+    },
+    {
+      "library": "nprogress@0.2.0",
+      "destination": "wwwroot/lib/nprogress/"
+    }
+  ]
+}
