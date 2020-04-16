@@ -8,9 +8,9 @@ using WebAspCore.Data.Entities;
 
 namespace WebAspCore.Data.Context
 {
-    public class WebDbConrtext : IdentityDbContext<AppUser, AppRole, Guid>
+    public class WebDbContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
-        public WebDbConrtext(DbContextOptions options) : base(options)
+        public WebDbContext(DbContextOptions options) : base(options)
         {
 
         }

@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebAspCore.Data\WebAspCore.Data.csproj" />
+    <ProjectReference Include="..\WebAspCore.Utilities\WebAspCore.Utilities.csproj" />
+    <ProjectReference Include="..\WebAspCore.ViewModel\WebAspCore.ViewModel.csproj" />
+  </ItemGroup>
+
 </Project>

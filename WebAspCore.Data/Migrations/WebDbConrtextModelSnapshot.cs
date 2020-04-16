@@ -8,7 +8,7 @@ using WebAspCore.Data.Context;
 
 namespace WebAspCore.Data.Migrations
 {
-    [DbContext(typeof(WebDbConrtext))]
+    [DbContext(typeof(WebDbContext))]
     partial class WebDbConrtextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

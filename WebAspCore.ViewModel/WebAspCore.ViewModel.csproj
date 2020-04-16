@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebAspCore.Data\WebAspCore.Data.csproj" />
+    <ProjectReference Include="..\WebAspCore.Utilities\WebAspCore.Utilities.csproj" />
+  </ItemGroup>
+
 </Project>

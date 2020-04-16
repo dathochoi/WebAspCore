@@ -9,7 +9,7 @@ using WebAspCore.Data.Context;
 
 namespace WebAspCore.Data.Migrations
 {
-    [DbContext(typeof(WebDbConrtext))]
+    [DbContext(typeof(WebDbContext))]
     [Migration("20200414183035_init")]
     partial class init
     {
