@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using WebAspCore.Data.Context;
 using WebAspCore.Data.Entities;
+using WebAspCore.Services.AutoMapper;
 using WebAspCore.Services.Interfaces;
 using WebAspCore.ViewModel.ViewModels;
 
@@ -40,7 +42,16 @@ namespace WebAspCore.Services.Implementation
         public List<ProductCategoryViewModel> GetAll()
         {
             //return _context.ProductCategories.Find();
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            var list = _context.ProductCategories.ToList();
+            var listvm = new List<ProductCategoryViewModel>();
+            foreach( var item in list)
+            {
+                var vm = new ProductCategoryViewModel();
+                vm = MapperExtend.ProductCategoryToVM(item);
+                listvm.Add(vm);
+            }
+            return listvm;
 
         }
 

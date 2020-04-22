@@ -15,6 +15,9 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using WebAspCore.Data.Context;
 using WebAspCore.Data.Entities;
+using WebAspCore.Helpers;
+using WebAspCore.Services.Implementation;
+using WebAspCore.Services.Interfaces;
 
 namespace WebAspCore
 {
@@ -31,6 +34,7 @@ namespace WebAspCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+           
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews()
                    .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
@@ -61,9 +65,16 @@ namespace WebAspCore
                 options.User.RequireUniqueEmail = true;
             });
 
+
+
             // Add application services.
             services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
+            services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, CustomClaimsPrincipalFactory>();
+
+            services.AddTransient<IFunctionService, FunctionService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IProductCategoryService, ProductCategoryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,8 +94,9 @@ namespace WebAspCore
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

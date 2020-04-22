@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebAspCore.Extensions;
 
 namespace WebAspCore.Areas.Admin.Controllers
 {
@@ -11,6 +12,7 @@ namespace WebAspCore.Areas.Admin.Controllers
         [Area("Admin")]
         public IActionResult Index()
         {
+            var email = User.GetSpecificClaim("Email");
             return View();
         }
     }
