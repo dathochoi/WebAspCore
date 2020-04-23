@@ -30,7 +30,8 @@
     <link href="~/lib/ckeditor/skins/moono/editor.css" rel="stylesheet" />
     <!-- Custom Theme Style -->
     @*<link href="~/admin-side/css/custom.css" rel="stylesheet" />*@
-    <link href="~/admin-side/New folder/css/custom.css" rel="stylesheet" />
+    @*<link href="~/admin-side/New folder/css/custom.css" rel="stylesheet" />*@
+    <link href="~/admin-side/build/css/custom.css" rel="stylesheet" />
     <link href="~/admin-side/css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
@@ -50,7 +51,7 @@
                     <div class="profile clearfix">
                         <div class="profile_pic">
                             <img src="~/admin-side/New folder/images/img.jpg" alt="..." class="img-circle profile_img">
-                           
+
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
@@ -184,7 +185,8 @@
     </div>
 
     <!-- jQuery -->
-    <script src="~/lib/jquery/dist/jquery.js"></script>
+    @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+    <script src="~/admin-side/vendors/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap -->
     @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
@@ -230,10 +232,12 @@
 
     <script src="~/lib/bootbox.js/bootbox.js"></script>
 
-    <script src="~/app/shared/tedu.js"></script>
+    <script src="~/app/shared/lib.js"></script>
     <!-- Custom Theme Scripts -->
     @*<script src="~/admin-side/js/custom.js"></script>*@
     @*<script src="~/admin-side/New folder/js/custom.js"></script>*@
+    @*<script src="~/admin-side/build/js/custom.js"></script>*@
+    <script src="~/admin-side/build/js/custom.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

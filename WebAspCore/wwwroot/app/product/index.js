@@ -22,8 +22,8 @@
         });
 
         $('#ddlShowPage').on('change', function () {
-            tedu.configs.pageSize = $(this).val();
-            tedu.configs.pageIndex = $(this).val();
+            lib.configs.pageSize = $(this).val();
+            lib.configs.pageIndex = $(this).val();
             loadData(true);
         });
 
@@ -63,10 +63,10 @@
                 data: data,
                 success: function (path) {
                     $("#txtImage").val(path);
-                    tedu.notify("Upload image successful!", "success");
+                    lib.notify("Upload image successful!", "success");
                 },
                 error: function () {
-                    tedu.notify("Threr war error upload files!", "error");
+                    lib.notify("Threr war error upload files!", "error");
                 }
             });
         });
@@ -81,7 +81,7 @@
                 data: { id: that },
                 dataType: "json",
                 beforeSend: function () {
-                    tedu.startLoading();
+                    lib.startLoading();
                 },
                 success: function (response) {
                     var data = response;
@@ -110,11 +110,11 @@
                     $('#ckShowHomeM').prop('checked', data.HomeFlag);
 
                     $('#modal-add-edit').modal('show');
-                    tedu.stopLoading();
+                    lib.stopLoading();
                 },
                 error: function (status) {
-                    tedu.notify("Error", "error");
-                    tedu.stopLoading();
+                    lib.notify("Error", "error");
+                    lib.stopLoading();
                 }
             });
         });
@@ -123,24 +123,26 @@
         //});
         $("body").on("click", ".btn-delete", function (e) {
             //e.preventDefault();
-            console.log("delete enter");
-            tedu.confirm('Are you sure to delete?', function () {
+           // console.log("delete enter");
+            var that = $(this).data("id");
+            lib.confirm('Are you sure to delete?', function () {
+                //console.log("delete enter click");
                 $.ajax({
                     type: "POST",
                     url: "/Admin/Product/Delete",
                     data: { id: that },
                     dataType: "json",
                     beforeSend: function () {
-                        tedu.startLoading();
+                        lib.startLoading();
                     },
                     success: function (response) {
-                        tedu.notify('Delete successful', 'success');
-                        tedu.stopLoading();
+                        lib.notify('Delete successful', 'success');
+                        lib.stopLoading();
                         loadData();
                     },
                     error: function (status) {
-                        tedu.notify('Has an error in delete progress', 'error');
-                        tedu.stopLoading();
+                        lib.notify('Has an error in delete progress', 'error');
+                        lib.stopLoading();
                     }
                 });
             });
@@ -155,8 +157,8 @@
                 var id = $("#hidIdM").val();
                 var name = $('#txtNameM').val();
 
-                var description = $("txtDescM").val();
-                var unit = $("txtUnitM").val();
+                var description = $("#txtDescM").val();
+                var unit = $("#txtUnitM").val();
 
 
                 var seoKeyword = $("#txtMetakeywordM").val();
@@ -203,19 +205,19 @@
                     },
                     dataType: "json",
                     before: function () {
-                        tedu.startLoading();
+                        lib.startLoading();
                     },
 
                     success: function (res) {
-                        tedu.notify("Upload product successful", "successs");
+                        lib.notify("Upload product successful", "successs");
                         $("#modal-add-edit").modal("hide");
                         resetFrormMaintainnance();
-                        tedu.stopLoading();
+                        lib.stopLoading();
                         loadData(true);
                     },
                     error: () => {
-                        tedu.notify("Error in save product progress", "error");
-                        tedu.stopLoading();
+                        lib.notify("Error in save product progress", "error");
+                        lib.stopLoading();
                     }
                 });
                 return false;
@@ -259,7 +261,7 @@
     //                    sortOrder: item.SortOrder
     //                });
     //            });
-    //            var arr = tedu.unflattern(data);
+    //            var arr = lib.unflattern(data);
     //            $('#ddlCategoryIdM').combotree({
     //                data: arr
     //            });
@@ -309,7 +311,7 @@
             },
             error: function (status) {
                 console.log(status);
-                tedu.notify("Can't loading product category data", "error");
+                lib.notify("Can't loading product category data", "error");
             }
         });
     }
@@ -321,8 +323,8 @@
             data: {
                 categoryId: $('#ddlCategorySearch').val(),
                 keyword: $('txtKeyword').val(),
-                page: tedu.configs.pageIndex,
-                pageSize: tedu.configs.pageSize
+                page: lib.configs.pageIndex,
+                pageSize: lib.configs.pageSize
             },
             url: "/Admin/Product/GetAllPaging",
             dataType: 'json',
@@ -334,9 +336,9 @@
                         Name: item.Name,
                         Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.Image + '" width=25 />',
                         //CategoryName: item.ProductCategory.Name == null ? item.ProductCategory.Name: string.empty,
-                        Price: tedu.formatNumber(item.Price, 0),
-                        CreatedDate: tedu.dateTimeFormatJson(item.DateCreated),
-                        Status: tedu.getStatus(item.Status)
+                        Price: lib.formatNumber(item.Price, 0),
+                        CreatedDate: lib.dateTimeFormatJson(item.DateCreated),
+                        Status: lib.getStatus(item.Status)
                     });
                     $("#lblTotalRecords").text(res.RowCount);
                     if (render != '') {
@@ -349,13 +351,13 @@
             },
             error: function (status) {
                 console.log(status);
-                tedu.notify("Can't loading data", "error");
+                lib.notify("Can't loading data", "error");
             }
         });
     }
 
     function wrapPaging(recordCount, callBack, changePageSize) {
-        var totalsize = Math.ceil(recordCount / tedu.configs.pageSize);
+        var totalsize = Math.ceil(recordCount / lib.configs.pageSize);
         //Unbind pagination if it existed or click change pagesize
         if ($('#paginationUL a').length === 0 || changePageSize === true) {
             $('#paginationUL').empty();
@@ -371,7 +373,7 @@
             next: 'Next',
             last: 'End',
             onPageClick: function (event, p) {
-                tedu.configs.pageIndex = p;
+                lib.configs.pageIndex = p;
                 setTimeout(callBack(), 200);
             }
         });

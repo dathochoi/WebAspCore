@@ -119,6 +119,7 @@ namespace WebAspCore.Services.Implementation
             //var vm = _mapper.Map<Product>(product);
             var vm = MapperExtend.VMToProduct(product);
             _context.Products.Update(vm);
+            _context.SaveChanges();
 
         }
     }

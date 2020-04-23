@@ -22,7 +22,8 @@ namespace WebAspCore.Services.Implementation
         }
         public ProductCategoryViewModel Add(ProductCategoryViewModel productCategoryVm)
         {
-            var productCategory =_mapper.Map<ProductCategory>(productCategoryVm);
+            // var productCategory =_mapper.Map<ProductCategory>(productCategoryVm);
+            var productCategory = MapperExtend.VMToProductCategory(productCategoryVm);
             _context.ProductCategories.Add(productCategory);
             _context.SaveChanges();
             return productCategoryVm;
@@ -49,6 +50,7 @@ namespace WebAspCore.Services.Implementation
             {
                 var vm = new ProductCategoryViewModel();
                 vm = MapperExtend.ProductCategoryToVM(item);
+
                 listvm.Add(vm);
             }
             return listvm;
@@ -57,22 +59,64 @@ namespace WebAspCore.Services.Implementation
 
         public List<ProductCategoryViewModel> GetAll(string keyword)
         {
-            throw new NotImplementedException();
+            List<ProductCategory> listvm = new List<ProductCategory>();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                 listvm = _context.ProductCategories.Where(x => x.Name.Contains(keyword) || x.Description.Contains(keyword))
+                      .OrderBy(x => x.ParentId)
+                      .ToList();
+            }
+            else
+            {
+                 listvm = _context.ProductCategories.ToList();
+            }
+            List<ProductCategoryViewModel> list = new List<ProductCategoryViewModel>();
+            foreach(var item in listvm)
+            {
+                ProductCategoryViewModel vm = new ProductCategoryViewModel();
+                vm = MapperExtend.ProductCategoryToVM(item);
+                list.Add(vm);
+            }
+            return list;
         }
 
         public List<ProductCategoryViewModel> GetAllByParentId(int parentId)
         {
-            throw new NotImplementedException();
+            List<ProductCategory> list = _context.ProductCategories.Where(x => x.Status == Data.Enums.Status.Active && x.ParentId == parentId).ToList();
+            List<ProductCategoryViewModel> listvm = new List<ProductCategoryViewModel>();
+            foreach( var  item in list)
+            {
+                ProductCategoryViewModel vm = new ProductCategoryViewModel();
+                vm = MapperExtend.ProductCategoryToVM(item);
+                listvm.Add(vm);
+            }
+            return listvm;
         }
 
         public ProductCategoryViewModel GetById(int id)
         {
-            throw new NotImplementedException();
+            var item = _context.ProductCategories.Find(id);
+            if (item ==null)
+            {
+                throw new Exception("Product Category " + id + " not exist.");
+
+            }
+            return MapperExtend.ProductCategoryToVM(item);
         }
 
         public List<ProductCategoryViewModel> GetHomeCategories(int top)
         {
-            throw new NotImplementedException();
+            var list = _context.ProductCategories.Where(x => x.HomeFlag == true).OrderBy(x => x.HomeOrder)
+                .Take(top).ToList();
+            var listvm = new List<ProductCategoryViewModel>();
+            foreach( var item in list)
+            {
+                ProductCategoryViewModel vm = new ProductCategoryViewModel();
+                vm = MapperExtend.ProductCategoryToVM(item);
+                listvm.Add(vm);
+
+            }
+            return listvm;
         }
 
         public void ReOrder(int sourceId, int targetId)
@@ -87,7 +131,9 @@ namespace WebAspCore.Services.Implementation
 
         public void Update(ProductCategoryViewModel productCategoryVm)
         {
-            throw new NotImplementedException();
+            var item = MapperExtend.VMToProductCategory(productCategoryVm);
+            _context.ProductCategories.Update(item);
+            _context.SaveChanges();
         }
 
         public void UpdateParentId(int sourceId, int targetId, Dictionary<int, int> items)

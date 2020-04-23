@@ -13,20 +13,25 @@
     <title>Đăng nhập hệ thống admin </title>
 
     <!-- Bootstrap -->
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@
+    <link href="~/admin-side/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Font Awesome -->
-    <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    @*<link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />*@
+    <link href="~/admin-side/vendors/fontawesome/css/font-awesome.css" rel="stylesheet" />
 
     <!-- NProgress -->
-    <link href="~/lib/nprogress/nprogress.css" rel="stylesheet" />
+    @*<link href="~/lib/nprogress/nprogress.css" rel="stylesheet" />*@
+    <link href="~/admin-side/vendors/nprogress/nprogress.css" rel="stylesheet" />
 
     <!-- Animate.css -->
-    <link href="~/lib/animate.css/animate.css" rel="stylesheet" />
+    @*<link href="~/lib/animate.css/animate.css" rel="stylesheet" />*@
+    <link href="~/admin-side/vendors/animate.css/animate.css" rel="stylesheet" />
 
     <link href="~/lib/notifyjs-master/dist/styles/metro/notify-metro.css" rel="stylesheet" />
     <!-- Custom Theme Style -->
-    <link href="~/admin-side/css/custom.css" rel="stylesheet" />
+    @*<link href="~/admin-side/css/custom.css" rel="stylesheet" />*@
+    <link href="~/admin-side/build/css/custom.css" rel="stylesheet" />
 </head>
 
 <body class="login">
@@ -68,7 +73,8 @@
         </div>
     </div>
     @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
-    <script src="~/lib/jquery/jquery.js"></script>
+    @*<script src="~/lib/jq@*uery/jquery.js"></script>*@
+    <script src="~/admin-side/vendors/jquery/dist/jquery.min.js"></script>
     @*<script src="~/lib/notifyjs/dist/notify.js"></script>*@
     <script src="~/lib/notifyjs-master/dist/notify.js"></script>
     @*<script src="~/lib/notifyjs/dist/styles/metro/notify-metro.js"></script>*@
@@ -80,7 +86,7 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/localization/messages_vi.js"></script>
 
-    <script src="~/app/shared/tedu.js"></script>
+    <script src="~/app/shared/lib.js"></script>
     @*<script src="~/app/controllers/login/index.js"></script>*@
     <script src="~/app/Login/Index.js"></script>
     <script>
