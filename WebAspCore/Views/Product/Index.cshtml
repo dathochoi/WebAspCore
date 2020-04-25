@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+  
+}
+@section Scripts{
+    <script src="~/app-client/product/index.js"></script>
+    <script>
+        var product = new productController();
+        product.initialize();</script>
+}
+
+
+    <div id="tbl-content" class="row"></div>
+
+    <div class="row">
+        <nav class="cat_page mx-auto" aria-label="Page navigation example">
+            <ul class="pagination" id="paginationUL">
+
+            </ul>
+        </nav>
+    </div>
+
+
+    <script id="table-template" type="x-tmpl-mustache">
+        <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="f_p_item">
+
+                @*<div class="f_p_img" data-id="{{Id}}">
+                    {{{Image}}}
+                </div>*@
+                {{{Image}}}
+                <a href="#" data-id="{{Id}}">
+                    <h4>{{Name}}</h4>
+                </a>
+                <h3>{{PromotionPrice}}</h3>
+                <h5>{{Price}}</h5>
+
+            </div>
+        </div>
+
+    </script>
+

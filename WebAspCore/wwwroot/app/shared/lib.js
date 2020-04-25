@@ -3,6 +3,10 @@
         pageSize: 10,
         pageIndex: 1
     },
+    configsClient: {
+        pageSize: 12,
+        pageIndex: 1
+    },
     notify: function (message, type) {
         $.notify(message, {
             // whether to hide the notification on click

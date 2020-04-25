@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using WebAspCore.Data.Context;
 using WebAspCore.Data.Entities;
 using WebAspCore.Services.AutoMapper;
@@ -88,6 +90,20 @@ namespace WebAspCore.Services.Implementation
             {
                 ProductCategoryViewModel vm = new ProductCategoryViewModel();
                 vm = MapperExtend.ProductCategoryToVM(item);
+                listvm.Add(vm);
+            }
+            return listvm;
+        }
+
+        public async Task<List<ProductCategoryViewModel>> GetAllVC()
+        {
+            var list = await _context.ProductCategories.ToListAsync();
+            var listvm = new List<ProductCategoryViewModel>();
+            foreach (var item in list)
+            {
+                var vm = new ProductCategoryViewModel();
+                vm = MapperExtend.ProductCategoryToVM(item);
+
                 listvm.Add(vm);
             }
             return listvm;

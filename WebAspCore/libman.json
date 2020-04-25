@@ -89,6 +89,10 @@
     {
       "library": "bootbox.js@4.4.0",
       "destination": "wwwroot/lib/bootbox.js/"
+    },
+    {
+      "library": "popper.js@2.3.3",
+      "destination": "wwwroot/lib/popper.js/"
     }
   ]
 }

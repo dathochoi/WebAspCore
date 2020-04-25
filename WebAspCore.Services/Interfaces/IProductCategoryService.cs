@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using WebAspCore.ViewModel.ViewModels;
 
 namespace WebAspCore.Services.Interfaces
@@ -14,6 +15,8 @@ namespace WebAspCore.Services.Interfaces
         void Delete(int id);
 
         List<ProductCategoryViewModel> GetAll();
+
+        Task<List<ProductCategoryViewModel>> GetAllVC();
 
         List<ProductCategoryViewModel> GetAll(string keyword);
 
