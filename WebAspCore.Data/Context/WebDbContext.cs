@@ -63,6 +63,10 @@ namespace WebAspCore.Data.Context
         public DbSet<Advertistment> Advertistments { get; set; }
         public DbSet<AdvertistmentPosition> AdvertistmentPositions { get; set; }
 
+        public DbSet<ProductType> ProductTypes { get; set; }
+
+        public DbSet<MakeIn> MakeIns { get; set; }
+        public DbSet<Systems> Systems { get; set; }
 
     }
 }

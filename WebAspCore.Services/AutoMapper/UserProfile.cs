@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using WebAspCore.Data.Entities;
 using WebAspCore.ViewModel.ViewModels;
+using WebAspCore.ViewModel.ViewModels.Products;
 using WebAspCore.ViewModel.ViewModels.Systems;
 
 namespace WebAspCore.Services.AutoMapper

@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WebAspCore.Services.Interfaces;
 using WebAspCore.Utilities.Helpers;
-using WebAspCore.ViewModel.ViewModels;
+using WebAspCore.ViewModel.ViewModels.Products;
 
 namespace WebAspCore.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class ProductController : Controller
+
+    public class ProductController : AdminController
     {
         private IProductService _productService;
         private IProductCategoryService _productCategoryService;
-        public ProductController(IProductService productService, IProductCategoryService productCategoryService)
+        private IMakeInService _makeInService;
+        public ProductController(IProductService productService, IProductCategoryService productCategoryService, IMakeInService makeInService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
+            _makeInService = makeInService;
         }
         public IActionResult Index()
         {
@@ -41,9 +42,23 @@ namespace WebAspCore.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllPaging(int? categoryId, string keyword, int page, int pageSize)
+        public async Task<IActionResult> GetAllMakeIns()
         {
-            var model = _productService.GetAllPaging(categoryId, keyword, page, pageSize);
+            var model = await _makeInService.GetAll();
+            return new OkObjectResult(model);
+        }
+
+        [HttpGet]
+        public IActionResult GetAllPaging(int? categoryId, string keyword, int page, int pageSize, int? makeInId)
+        {
+            //if((string.IsNullOrEmpty(categoryId.ToString()))|| !string.IsNullOrEmpty(keyword) )
+            //{
+            //    page = 1;
+            //}
+
+            var model = _productService.GetAllPaging(categoryId, keyword, page, pageSize,makeInId);
+            if (model.Results.Count == 0)
+                return BadRequest();
             return new OkObjectResult(model);
         }
 
@@ -54,11 +69,25 @@ namespace WebAspCore.Areas.Admin.Controllers
             return new OkObjectResult(model);
 
         }
+        [HttpPost]
+        public IActionResult SaveImages(int productId, List<ImageCheckViewModel> images)
+        {
+            _productService.AddImages(productId, images);
+           
+            return new OkObjectResult(images);
+        }
 
+        [HttpGet]
+        public IActionResult GetImages(int productId)
+        {
+            var images = _productService.GetImages(productId);
+            return new OkObjectResult(images);
+        }
 
         [HttpPost]
         public IActionResult SaveEntity(ProductViewModel productVm)
         {
+            
             if (!ModelState.IsValid)
             {
                 IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
@@ -66,6 +95,7 @@ namespace WebAspCore.Areas.Admin.Controllers
             }
             else
             {
+                
                 productVm.SeoAlias = TextHelper.ToUnsignString(productVm.Name);
                 if (productVm.Id == 0)
                 {
@@ -89,11 +119,13 @@ namespace WebAspCore.Areas.Admin.Controllers
             }
             else
             {
+
                 _productService.Delete(id);
                 
 
                 return new OkObjectResult(id);
             }
         }
+       
     }
 }

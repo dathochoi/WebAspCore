@@ -96,8 +96,8 @@ namespace WebAspCore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("57ef887d-b68a-4d69-b82f-7cf1b87cbacf"),
-                            RoleId = new Guid("cc12640e-28d5-4e89-b169-1e5eecf729c8")
+                            UserId = new Guid("a3920a37-76fd-4fa3-8fad-2521a75d72a4"),
+                            RoleId = new Guid("af3db7ba-c472-48a1-82bd-1a491e7a03ff")
                         });
                 });
 
@@ -315,24 +315,24 @@ namespace WebAspCore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cc12640e-28d5-4e89-b169-1e5eecf729c8"),
-                            ConcurrencyStamp = "6537d1d5-00ad-4a55-9ac0-25b446fadea4",
+                            Id = new Guid("af3db7ba-c472-48a1-82bd-1a491e7a03ff"),
+                            ConcurrencyStamp = "d2dab739-ead8-4178-a3ef-30b75821d05e",
                             Description = "Top manager",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("b3063e3f-635a-428b-9723-f075ec93ff9a"),
-                            ConcurrencyStamp = "2bb689a6-9f6a-46c3-acab-6c7083a31813",
+                            Id = new Guid("b0010a0f-c60a-496b-81f6-b7adefe6b35e"),
+                            ConcurrencyStamp = "d69f73fa-771c-4c34-84d7-f114cd71c7fd",
                             Description = "Staff",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
-                            Id = new Guid("600ff89a-5b95-441a-aada-5dab1d36522d"),
-                            ConcurrencyStamp = "cb503a29-0778-4c10-84f6-2edab5102366",
+                            Id = new Guid("e5022ae8-b308-4e26-8b60-3189bd021964"),
+                            ConcurrencyStamp = "385089bc-66c5-4b83-bce1-3fd7254eda96",
                             Description = "Customer",
                             Name = "Customer",
                             NormalizedName = "Customer"
@@ -415,10 +415,10 @@ namespace WebAspCore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("57ef887d-b68a-4d69-b82f-7cf1b87cbacf"),
+                            Id = new Guid("a3920a37-76fd-4fa3-8fad-2521a75d72a4"),
                             AccessFailedCount = 0,
                             Balance = 0m,
-                            ConcurrencyStamp = "978fe55f-9562-44aa-bc6f-4a88d9dc868b",
+                            ConcurrencyStamp = "60bb46f6-03fc-49a3-88c4-b7b72af89aea",
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "dan@gmail.com",
@@ -426,7 +426,7 @@ namespace WebAspCore.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "dandan@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOCsWIdIL+GrDT14bpWHriVLd9z2zeBDrYrOVG+h2KDPXbAfjKIiJsVoDGUcgSL5gA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHl3W88V81Kfp+o6bUm8b4OXc0hzeK6v+AoMj2Hat9fvyLkFcRX4GtbtOSjB8HY+TA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = 0,
@@ -1038,6 +1038,24 @@ namespace WebAspCore.Data.Migrations
                     b.ToTable("Languages");
                 });
 
+            modelBuilder.Entity("WebAspCore.Data.Entities.MakeIn", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("CheckMenu")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MakeIns");
+                });
+
             modelBuilder.Entity("WebAspCore.Data.Entities.Page", b =>
                 {
                     b.Property<string>("Id")
@@ -1134,6 +1152,9 @@ namespace WebAspCore.Data.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
+                    b.Property<int>("MakeInId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
@@ -1191,6 +1212,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 6",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1204,6 +1226,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 7",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1217,6 +1240,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 8",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1230,6 +1254,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 9",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1243,6 +1268,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 10",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1256,6 +1282,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 11",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1269,6 +1296,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 12",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1282,6 +1310,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 13",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1295,6 +1324,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 14",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1308,6 +1338,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 15",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1321,6 +1352,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 16",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1334,6 +1366,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 17",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1347,6 +1380,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 18",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1360,6 +1394,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 19",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1373,6 +1408,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 20",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1386,6 +1422,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 1",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1399,6 +1436,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 2",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1412,6 +1450,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 3",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1425,6 +1464,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 4",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1438,6 +1478,7 @@ namespace WebAspCore.Data.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Image = "/client-side/images/products/product-1.jpg",
+                            MakeInId = 0,
                             Name = "Sản phẩm 5",
                             OriginalPrice = 1000m,
                             Price = 1000m,
@@ -1560,6 +1601,9 @@ namespace WebAspCore.Data.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Selected")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
@@ -1618,6 +1662,41 @@ namespace WebAspCore.Data.Migrations
                     b.HasIndex("TagId");
 
                     b.ToTable("ProductTags");
+                });
+
+            modelBuilder.Entity("WebAspCore.Data.Entities.ProductType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<double>("OriginPrice")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("SalePrice")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductTypes");
                 });
 
             modelBuilder.Entity("WebAspCore.Data.Entities.Size", b =>
@@ -1911,6 +1990,69 @@ namespace WebAspCore.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WebAspCore.Data.Entities.Systems", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Descaription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IconLogo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("ImageCover")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<float>("Lat")
+                        .HasColumnType("real");
+
+                    b.Property<string>("LinkFaceBook")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkInstargram")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Lng")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameWebsite")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Node")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<string>("PhongNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Systems");
+                });
+
             modelBuilder.Entity("WebAspCore.Data.Entities.Tag", b =>
                 {
                     b.Property<string>("Id")
@@ -2104,6 +2246,15 @@ namespace WebAspCore.Data.Migrations
                     b.HasOne("WebAspCore.Data.Entities.Tag", "Tag")
                         .WithMany()
                         .HasForeignKey("TagId");
+                });
+
+            modelBuilder.Entity("WebAspCore.Data.Entities.ProductType", b =>
+                {
+                    b.HasOne("WebAspCore.Data.Entities.Product", "Product")
+                        .WithMany("ProductTypes")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WebAspCore.Data.Entities.WholePrice", b =>

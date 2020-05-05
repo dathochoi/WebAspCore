@@ -1,0 +1,77 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@model IEnumerable<WebAspCore.ViewModel.ViewModels.Products.MakeInViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<h2>Nơi xứ xứ sản phẩm</h2>
+
+<p>
+   @* <a asp-action="Create">Create New</a>*@
+    <a asp-area="Admin"
+       asp-controller="MakeIns"
+       asp-action="Create"
+     >Thêm mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>*@
+            <th>
+                <label>Nơi xuất xứ</label>
+            </th>
+            <th>
+                <label>Hiển thị ở Menu</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @{
+                    if (item.CheckMenu == true)
+                    {
+                        <label>Có</label>
+                    }
+                    else
+                    {
+                        <label>Không</label>
+                    }
+                }
+            </td>
+            <td>
+
+                <a asp-area="Admin"
+                   asp-controller="MakeIns"
+                   asp-action="Edit"
+                   asp-route-id="@item.Id">Chỉnh sửa |</a>
+                @*@Html.ActionLink("Edit", "Edit", new { Area = "Admin" }, new { id = item.Id }) |*@
+                @*@Html.ActionLink("Details", "Details", new { Area = "Admin" }, new { id = item.Id })*@
+                @*<a asp-area="Admin"
+            asp-controller="MakeIns"
+            asp-action="Details"
+            asp-route-id="@item.Id">Chi tiết |</a>*@
+                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                <a asp-area="Admin"
+                   asp-controller="MakeIns"
+                   asp-action="Delete"
+                   asp-route-id="@item.Id">Xóa </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -5,7 +5,9 @@
 }
 
 @section Styles{
-  
+
+
+    <link href="~/app-client/details/myStyle.css" rel="stylesheet" />
 }
 @section Scripts{
     <script src="~/app-client/product/index.js"></script>
@@ -13,35 +15,70 @@
         var product = new productController();
         product.initialize();</script>
 }
+<section class="cat_product_area section_gap">
+    <div class="container-fluid">
+        <div class="row flex-row-reverse">
+            <div class="col-lg-9">
+                <div class="product_top_bar">
+                    @*<div class="left_dorp">
+                            <select class="sorting">
+                                <option value="1">Default sorting</option>
+                                <option value="2">Default sorting 01</option>
+                                <option value="4">Default sorting 02</option>
+                            </select>
+                            <select class="show">
+                                <option value="1">Show 12</option>
+                                <option value="2">Show 14</option>
+                                <option value="4">Show 16</option>
+                            </select>
+                        </div>*@
 
+                </div>
+                <div class="latest_product_inner ">
 
-    <div id="tbl-content" class="row"></div>
+                    <div id="tbl-content" class="row"></div>
 
-    <div class="row">
-        <nav class="cat_page mx-auto" aria-label="Page navigation example">
-            <ul class="pagination" id="paginationUL">
+                    <div class="row">
+                        <nav class="cat_page mx-auto" aria-label="Page navigation example">
+                            <ul class="pagination" id="paginationUL">
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="left_sidebar_area">
+                    <aside class="left_widgets cat_widgets">
+                        <div class="l_w_title">
+                            <h3>Danh mục</h3>
+                        </div>
+                        <div class="widgets_inner">
+                            @await Component.InvokeAsync("SideBarCategory")
 
-            </ul>
-        </nav>
-    </div>
+                        </div>
+                    </aside>
 
-
-    <script id="table-template" type="x-tmpl-mustache">
-        <div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="f_p_item">
-
-                @*<div class="f_p_img" data-id="{{Id}}">
-                    {{{Image}}}
-                </div>*@
-                {{{Image}}}
-                <a href="#" data-id="{{Id}}">
-                    <h4>{{Name}}</h4>
-                </a>
-                <h3>{{PromotionPrice}}</h3>
-                <h5>{{Price}}</h5>
-
+                </div>
             </div>
         </div>
+    </div>
 
-    </script>
+</section>
+
+
+<script id="table-template" type="x-tmpl-mustache">
+    <div class="col-lg-3 col-md-3 col-sm-6">
+        <div class="f_p_item">
+            <a class="indexA" href="Product/Details/{{Id}}" data-id="{{Id}}">
+                {{{Image}}}
+                <h4>{{Name}}</h4>
+            
+                <h6>Xuất xứ: {{MakeIn}}</h6>
+                <h3 class="indexPrice">{{Price}}đ</h3>
+                <p>{{Description}}</p>
+            </a>
+        </div>
+    </div>
+
+</script>
 

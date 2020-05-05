@@ -11,6 +11,7 @@ namespace WebAspCore.Controllers
     {
         private IProductService _productService;
         private IProductCategoryService _productCategoryService;
+        
        
         private Microsoft.Extensions.Configuration.IConfiguration _configuration;
 
@@ -34,16 +35,25 @@ namespace WebAspCore.Controllers
 
             catalog.PageSize = pageSize;
             catalog.SortType = sortBy;
-            catalog.Data = _productService.GetAllPaging(null, keyword, page, pageSize.Value);
+            catalog.Data = _productService.GetAllPaging(null, keyword, page, pageSize.Value, null);
             catalog.Keyword = keyword;
 
             return View(catalog);
         }
         [HttpGet]
-        public IActionResult GetAllPaging(int? categoryId, string keyword, int pageSize,  int page = 1)
+        public IActionResult GetAllPaging(int? categoryId, int? makeInId, bool hotFlag, string keyword, int pageSize,  int page = 1 )
         {
-            var model = _productService.GetAllPaging(categoryId, keyword, page, pageSize);
+            var model = _productService.GetAllPagingInHome(categoryId, keyword, page, pageSize, hotFlag, makeInId);
             return new OkObjectResult(model);
+        }
+
+       
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var model = _productService.GetDetails(id);
+
+            return View(model);
         }
     }
 }

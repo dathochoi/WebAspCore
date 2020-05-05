@@ -20,10 +20,36 @@
     <!-- main css -->
     <link rel="stylesheet" href="~/client-side/css/style.css">
     <link rel="stylesheet" href="~/client-side/css/responsive.css">
+   
     @RenderSection("Styles", required: false)
 </head>
 
 <body>
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v6.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Your customer chat code -->
+    <div class="fb-customerchat"
+         attribution=setup_tool
+         page_id="111981407168910"
+         logged_in_greeting="Chào bạn! Tôi có thể giúp gì cho bạn"
+         logged_out_greeting="Chào bạn! Tôi có thể giúp gì cho bạn">
+    </div>
 
     <!--================Header Menu Area =================-->
     <header class="header_area">
@@ -114,10 +140,15 @@
                                 <ul class="nav navbar-nav navbar-right right_nav pull-right">
                                     <hr>
                                     <li class="nav-item">
-                                        <input type="text" id="txtSearch" />
-                                        <a href="#" class="icons">
+
+                                        <input type="text" id="txtKeyword" />
+                                        <a id="btnSearch" class="icons">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </a>
+                                        @*<input type="text" id="txtKeyword" class="form-control" placeholder="Search for...">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" id="btnSearch" type="button">Go!</button>
+                                        </span>*@
                                     </li>
 
                                     <hr>
@@ -149,79 +180,80 @@
     </section>
     <!--================End Home Banner Area =================-->
     <!--================Category Product Area =================-->
-    <section class="cat_product_area section_gap">
-        <div class="container-fluid">
-            <div class="row flex-row-reverse">
-                <div class="col-lg-9">
-                    <div class="product_top_bar">
-                        <div class="left_dorp">
-                            <select class="sorting">
-                                <option value="1">Default sorting</option>
-                                <option value="2">Default sorting 01</option>
-                                <option value="4">Default sorting 02</option>
-                            </select>
-                            <select class="show">
-                                <option value="1">Show 12</option>
-                                <option value="2">Show 14</option>
-                                <option value="4">Show 16</option>
-                            </select>
-                        </div>
-                  
+    @*<section class="cat_product_area section_gap">*@
+    @RenderBody();
+    @*<div class="container-fluid">
+        <div class="row flex-row-reverse">
+            <div class="col-lg-9">
+                <div class="product_top_bar">
+                    <div class="left_dorp">
+                        <select class="sorting">
+                            <option value="1">Default sorting</option>
+                            <option value="2">Default sorting 01</option>
+                            <option value="4">Default sorting 02</option>
+                        </select>
+                        <select class="show">
+                            <option value="1">Show 12</option>
+                            <option value="2">Show 14</option>
+                            <option value="4">Show 16</option>
+                        </select>
                     </div>
-                    <div class="latest_product_inner ">
-                        @RenderBody();
 
-                    </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="left_sidebar_area">
-                        <aside class="left_widgets cat_widgets">
-                            <div class="l_w_title">
-                                <h3>Browse Categories</h3>
-                            </div>
-                            <div class="widgets_inner">
-                                @await Component.InvokeAsync("SideBarCategory")
-                           
-                            </div>
-                        </aside>
+                 <div class="latest_product_inner ">*@
 
-                    </div>
+
+    @*</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="left_sidebar_area">
+                    <aside class="left_widgets cat_widgets">
+                        <div class="l_w_title">
+                            <h3>Browse Categories</h3>
+                        </div>
+                        <div class="widgets_inner">
+                            @await Component.InvokeAsync("SideBarCategory")
+
+                        </div>
+                    </aside>
+
                 </div>
             </div>
+        </div>*@
 
-            @*<div class="row">
-                    <nav class="cat_page mx-auto" aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">01</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">02</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">03</a>
-                            </li>
-                            <li class="page-item blank">
-                                <a class="page-link" href="#">...</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">09</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>*@
-        </div>
-    </section>
+    @*<div class="row">
+            <nav class="cat_page mx-auto" aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">01</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">02</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">03</a>
+                    </li>
+                    <li class="page-item blank">
+                        <a class="page-link" href="#">...</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">09</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>*@
+    @*</div>*@
+    @*</section>*@
     <!--================End Category Product Area =================-->
     <!--================ Subscription Area ================-->
     <!--================ End Subscription Area ================-->

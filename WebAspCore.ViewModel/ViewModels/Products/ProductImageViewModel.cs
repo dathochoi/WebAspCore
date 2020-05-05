@@ -15,5 +15,6 @@ namespace WebAspCore.ViewModel.ViewModels.Products
         public string Path { get; set; }
 
         public string Caption { get; set; }
+        public bool Checked { get; set; }
     }
 }

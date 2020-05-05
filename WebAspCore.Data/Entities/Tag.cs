@@ -19,5 +19,8 @@ namespace WebAspCore.Data.Entities
         [MaxLength(50)]
         [Required]
         public string Type { get; set; }
+
+
+        //public virtual ICollection<Product> Products { get; set; }
     }
 }

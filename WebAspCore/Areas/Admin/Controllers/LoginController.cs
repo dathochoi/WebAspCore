@@ -13,6 +13,7 @@ using WebAspCore.ViewModel.ViewModels.Account;
 namespace WebAspCore.Areas.Admin.Controllers
 {
     [Area("Admin")]
+ 
     public class LoginController : Controller
     {
         UserManager<AppUser> _userManager;

@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@section Styles{
+    @*<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">*@
+    <link rel="stylesheet" href="~/client-side/client-details/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/client-side/client-details/font-awesome.min.css" type="text/css">
+    <link href="~/client-side/client-details/elegant-icons.css" rel="stylesheet" />
+    <link href="~/client-side/client-details/nice-select.css" rel="stylesheet" />
+    <link href="~/client-side/client-details/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/client-side/client-details/jquery-ui.min.js"></script>
+    <link href="~/client-side/client-details/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/client-side/client-details/slicknav.min.css" rel="stylesheet" />
+    <link href="~/client-side/client-details/style.css" rel="stylesheet" />
+    <link href="~/app-client/details/myStyle.css" rel="stylesheet" />
+}
+@section Scripts{
+    <script src="~/client-side/client-details/jquery-3.3.1.min.js"></script>
+    <script src="~/client-side/client-details/bootstrap.min.js"></script>
+    <script src="~/client-side/client-details/jquery.nice-select.min.js"></script>
+    <script src="~/client-side/client-details/jquery-ui.min.js"></script>
+    <script src="~/client-side/client-details/jquery.slicknav.js"></script>
+    <script src="~/client-side/client-details/mixitup.min.js"></script>
+    <script src="~/client-side/client-details/owl.carousel.min.js"></script>
+    <script src="~/client-side/client-details/main.js"></script>
+    <script src="~/app-client/details/myDetail.js"></script>
+    <script>
+        var myDetails = new MyDetail();
+        myDetails.init();
+    </script>
+
+}
+
+@using WebAspCore.ViewModel.ViewModels.Products
+@model ProductViewModel
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6">
+                @if (Model.ImageList.Count > 0)
+                {
+                    <div class="product__details__pic">
+
+                        <div class="product__details__pic__item">
+                            @{
+                                bool isChecked = false;
+                                var img = "";
+                            }
+
+                            @foreach (var image in Model.ImageList)
+                            {
+
+                                img = image.Src + "?w=555&h=575&autorotate=true&format=png&mode=pad";
+                                if (image.Check == true)
+                                {
+                                    // var img = image.Src + "?w=555&h=575&autorotate=true&format=png&mode=pad";
+                                    <img class="product__details__pic__item--large"
+                                         src=@img alt="">
+                                    isChecked = true;
+                                    break;
+                                }
+                            }
+                            @if (isChecked == false)
+                            {
+                                <img class="product__details__pic__item--large"
+                                     src=@img alt="">
+                            }
+                        </div>
+
+                        <div class="product__details__pic__slider owl-carousel">
+                            @if (Model.ImageList.Count > 2)
+                            {
+                                @foreach (var image in Model.ImageList)
+                                {
+
+                                    var img1 = image.Src + "?w=555&h=575&autorotate=true&format=png&mode=pad";
+                                    var src1 = image.Src + "?w=555&h=575&autorotate=true&format=png&mode=pad";
+
+                                    <img data-imgbigurl=@img1
+                                         src=@src1 alt="">
+                                }
+                            }
+
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3>@Model.Name</h3>
+                    <h4>@Model.Description</h4>
+                    <div class="product__details__rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        @*<span>(18 reviews)</span>*@
+                    </div>
+
+                    @if (Model.ProductTypeList != null && Model.ProductTypeList.Count > 0)
+                    {
+                        @foreach (var price in Model.ProductTypeList)
+                        {
+
+                            <div class="row priceView" data-index=@price.Id>
+                                @if (price.SalePrice != 0)
+                                {
+
+                                    <div class="product__details__price salePrice  ">
+                                        @string.Format("{0:N0}", @price.SalePrice)
+                                    </div>
+                                    <div class="product__details__price salePrice mr-3 ">
+                                        đ
+                                    </div>
+                                    <div class="product__details__price">
+                                        <h5 style="color:dimgray;text-decoration: line-through"> @string.Format("{0:N0}", @price.Price)</h5>
+                                    </div>
+                                    <div class="product__details__price">
+                                        <h5 style="color:dimgray;text-decoration: line-through">đ</h5>
+                                    </div>
+
+
+
+                                }
+                                else
+                                {
+                                    <div class="product__details__price salePrice priceView" data-index=@price.Id>
+                                        @string.Format("{0:N0}", @price.Price)
+                                    </div>
+                                    <div class="product__details__price salePrice  ">
+                                        đ
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+
+
+                    <div class="row">
+                        @if (Model.ProductTypeList != null && Model.ProductTypeList.Count > 0)
+                        {
+                            @foreach (var price in Model.ProductTypeList)
+                            {
+                                <button class="btn btn btn-outline-success selectPrice ml-1" data-index=@price.Id>@price.Name</button>
+                            }
+                        }
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    @Html.Raw(Model.Content)
+
+                    @*<div class="product__details__quantity">
+                <div class="quantity">
+                    <div class="pro-qty">
+                        <input type="text" value="1">
+                    </div>
+                </div>
+            </div>*@
+                    <a href="#" class="primary-btn">Liên hệ để mua</a>
+                    @*<a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>*@
+                    <ul>
+                        @{
+                            if (Model.Status == WebAspCore.Data.Enums.Status.Active)
+                            {
+                                <li><b>Trạng thái: </b><span>Sản phẩm còn hàng</span></li>
+                            }
+                            else
+                            {
+                                <li><b>Trạng thái: </b><span>Sản phẩm bán hết</span></li>
+                            }
+                        }
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+

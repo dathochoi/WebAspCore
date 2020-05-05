@@ -17,6 +17,16 @@
     <Compile Remove="Migrations\20200414182608_init.Designer.cs" />
     <Compile Remove="Migrations\20200414182932_init.cs" />
     <Compile Remove="Migrations\20200414182932_init.Designer.cs" />
+    <Compile Remove="Migrations\20200429130424_updatproducf.cs" />
+    <Compile Remove="Migrations\20200429130424_updatproducf.Designer.cs" />
+    <Compile Remove="Migrations\20200429131155_udate.cs" />
+    <Compile Remove="Migrations\20200429131155_udate.Designer.cs" />
+    <Compile Remove="Migrations\20200429131526_update-database.cs" />
+    <Compile Remove="Migrations\20200429131526_update-database.Designer.cs" />
+    <Compile Remove="Migrations\20200429131651_udate-data.cs" />
+    <Compile Remove="Migrations\20200429131651_udate-data.Designer.cs" />
+    <Compile Remove="Migrations\20200429131747_add2.cs" />
+    <Compile Remove="Migrations\20200429131747_add2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

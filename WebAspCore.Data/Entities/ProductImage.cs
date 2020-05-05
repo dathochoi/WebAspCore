@@ -21,5 +21,6 @@ namespace WebAspCore.Data.Entities
 
         [StringLength(250)]
         public string Caption { get; set; }
+        public bool Selected { get; set; }
     }
 }

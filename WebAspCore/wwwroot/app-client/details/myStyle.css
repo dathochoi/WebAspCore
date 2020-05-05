@@ -1,0 +1,24 @@
+﻿.btnStyle{
+    color:white;
+}
+
+.indexPrice {
+    font-size: 23px;
+    color: #dd2222;
+   /*// font-weight: 600;
+    margin-bottom: 15px;*/
+}
+
+.indexA h4:hover{
+    color:tomato;
+}
+.indexA h6:hover, .indexA p:hover {
+    /*margin-bottom: 0px;
+   // font-size: 18px;*/
+    color: #777777;
+}
+.indexA h6, .indexA p {
+    /*margin-bottom: 0px;
+   // font-size: 18px;*/
+    color: #777777;
+}

@@ -12,6 +12,8 @@
     @*<script src="~/lib/jQuery-EasyUI/jquery.easyui.min.js"></script>*@
     @*<script src="https://unpkg.com/@popperjs/core@2"></script>*@
     <script src="~/app/product/index.js"></script>
+    <script src="~/app/product/image-management.js"></script>
+    <script src="~/app/product/AddRow.js"></script>
     <script>
         var product = new productController();
         product.initialize();</script>
@@ -33,12 +35,18 @@
         </div>
         <div class="col-md-4 col-sm-12  form-group pull-right">
             <select class="form-control" id="ddlCategorySearch">
-                <option>--Select category--</option>
+                <option>--Danh mực--</option>
             </select>
         </div>
         <div class="col-md-2 col-sm-12  form-group pull-right">
             <button id="btnCreate" class="btn btn-success">Create</button>
         </div>
+        <div class="col-md-4 col-sm-12  form-group pull-right">
+            <select class="form-control" id="ddlMakeInSearch">
+                <option>--Xuất xứ--</option>
+            </select>
+        </div>
+
     </div>
 </div>
 <div class="clearfix"></div>
@@ -51,12 +59,12 @@
                     <thead>
                         <tr>
                             <th width="10%">#</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                            <th>Image</th>
-                            <th>Created Date</th>
-                            <th>Status</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Danh mục</th>
+                            <th>Giá</th>
+                            <th>Hình ảnh</th>
+                            <th>Ngày tạo</th>
+                            <th>Tình trạng</th>
                         </tr>
                     </thead>
                     <tbody id="tbl-content"></tbody>
@@ -67,9 +75,9 @@
                         <div class="dataTables_info" id="datatable-checkbox_info" role="status" aria-live="polite">
                             <select id="ddlShowPage">
                                 <option value="10" selected="selected">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="50">50</option>
+                                @*<option value="20">20</option>
+                                    <option value="30">30</option>
+                                    <option value="50">50</option>*@
                             </select>
                             <span class="item-per-page">
                                 bản ghi/trang.
@@ -91,6 +99,7 @@
         <th scope="row">
             <button class="btn btn-default btn-sm btn-edit1" data-id="{{Id}}"><i class="fa fa-pencil"></i></button>
             <button class="btn btn-danger btn-sm btn-delete" data-id="{{Id}}"><i class="fa fa-trash"></i></button>
+            <a href="#" data-id="{{Id}}" class="btn btn-xs btn-images"><i class="fa fa-image"></i></a>
             @*<button class="btn btn-danger btn-sm btn-delete2" data-id="{{Id}}"><i class="fa fa-trash"></i></button>*@
         </th>
         <td>{{Name}}</td>
@@ -103,3 +112,4 @@
 </script>
 
 @await Html.PartialAsync("_AddEditModal.cshtml")
+@await Html.PartialAsync("_ImageManagement.cshtml")

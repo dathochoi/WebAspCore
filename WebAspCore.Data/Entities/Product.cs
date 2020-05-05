@@ -9,7 +9,7 @@ using WebAspCore.Data.Enums;
 namespace WebAspCore.Data.Entities
 {
     [Table("Products")]
-    public class Product 
+    public class Product
     {
         [Key]
         public int Id { get; set; }
@@ -69,6 +69,16 @@ namespace WebAspCore.Data.Entities
 
         public Status Status { set; get; }
 
-       
+        //[Required]
+        public int MakeInId { get; set; }
+
+
+        //[ForeignKey("MakeInId")]
+       // public virtual MakeIn MakeIn { get;set;}
+
+        //public int ProductTypeId { get; set; }
+        // public List<>
+        //[ForeignKey("ProductTypeId")]
+        public virtual ICollection<ProductType> ProductTypes { set; get; }
     }
 }

@@ -2,7 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>WebAspCore</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\app\productcategory\**" />
+    <Content Remove="wwwroot\app\productcategory\**" />
+    <EmbeddedResource Remove="wwwroot\app\productcategory\**" />
+    <None Remove="wwwroot\app\productcategory\**" />
+    <TypeScriptCompile Remove="wwwroot\app\productcategory\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
@@ -11,11 +20,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.3" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.8.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="SkiaSharp" Version="1.68.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +39,8 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="wwwroot\client-side\" />
+    <Folder Include="Areas\ViewModel\" />
+    <Folder Include="wwwroot\uploaded\images\" />
   </ItemGroup>
 
 

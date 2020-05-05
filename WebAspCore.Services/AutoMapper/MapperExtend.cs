@@ -4,6 +4,8 @@ using System.Text;
 using WebAspCore.Data.Entities;
 using WebAspCore.Utilities.Helpers;
 using WebAspCore.ViewModel.ViewModels;
+using WebAspCore.ViewModel.ViewModels.Products;
+
 
 namespace WebAspCore.Services.AutoMapper
 {
@@ -30,10 +32,27 @@ namespace WebAspCore.Services.AutoMapper
             vm.Tags = product.Tags;
             vm.Unit = product.Unit;
            
-            if (product.ProductCategory !=null)
+            if (string.IsNullOrEmpty(product.CategoryId.ToString()))
             {
+                //var cate  = _co
                 vm.ProductCategory = MapperExtend.ProductCategoryToVM(product.ProductCategory);
             }
+            //vm.ProductTypeList = new List<ProductTypeViewModel>();
+            //if (product.ProductTypes != null)
+            //{
+            //    foreach (var item in product.ProductTypes)
+            //    {
+            //        ProductTypeViewModel pT = new ProductTypeViewModel();
+            //        pT.Id = item.Id;
+            //        pT.Name = item.Name;
+            //        pT.OriginPrice = item.OriginPrice;
+            //        pT.Price = item.Price;
+            //        pT.SalePrice = item.Price;
+            //        pT.Status = item.Status;
+            //        pT.ProductId = item.ProductId;
+            //        vm.ProductTypeList.Add(pT);
+            //    }
+            //}
             
 
             vm.SeoPageTitle = product.SeoPageTitle;
@@ -44,7 +63,7 @@ namespace WebAspCore.Services.AutoMapper
             vm.DateCreated = product.DateCreated;
             vm.DateModified = product.DateCreated;
             vm.Status = product.Status;
-
+            vm.MakeInId = product.MakeInId;
             return vm;
         }
 
@@ -70,7 +89,7 @@ namespace WebAspCore.Services.AutoMapper
             vm.Unit = product.Unit;
 
             //vm.ProductCategory = MapperExtend.VMToProductCategory( product.ProductCategory);
-            if (product.ProductCategory != null)
+            if (string.IsNullOrEmpty(product.CategoryId.ToString()))
             {
                 vm.ProductCategory = MapperExtend.VMToProductCategory(product.ProductCategory);
             }
@@ -83,11 +102,14 @@ namespace WebAspCore.Services.AutoMapper
             vm.DateCreated = product.DateCreated;
             vm.DateModified = product.DateCreated;
             vm.Status = product.Status;
+            vm.MakeInId = product.MakeInId;
+
+
 
             return vm;
         }
 
-        public static ProductCategoryViewModel ProductCategoryToVM(ProductCategory productCategory)
+        public static ViewModel.ViewModels.Products.ProductCategoryViewModel ProductCategoryToVM(ProductCategory productCategory)
         {
             ProductCategoryViewModel vm = new ProductCategoryViewModel();
             vm.Id = productCategory.Id;
@@ -144,5 +166,9 @@ namespace WebAspCore.Services.AutoMapper
 
             // ICollection<Product> Products 
         }
+        //public static ProductToProductAndImageViewModel()
+        //{
+
+        //}
     }
 }

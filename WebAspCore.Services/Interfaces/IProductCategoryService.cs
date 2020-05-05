@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using WebAspCore.Utilities.DTOs;
 using WebAspCore.ViewModel.ViewModels;
+using WebAspCore.ViewModel.ViewModels.Products;
 
 namespace WebAspCore.Services.Interfaces
 {
@@ -28,6 +30,7 @@ namespace WebAspCore.Services.Interfaces
         void ReOrder(int sourceId, int targetId);
 
         List<ProductCategoryViewModel> GetHomeCategories(int top);
+        PagedResult<ProductCategoryViewModel> GetAllPaging(string keyword, int page, int pageSize);
 
         void Save();
     }

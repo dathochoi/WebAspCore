@@ -112,9 +112,9 @@
     },
     getStatus: function (status) {
         if (status == 1)
-            return '<span class="badge bg-green">Kích hoạt</span>';
+            return '<span class="badge bg-green">Còn hàng</span>';
         else
-            return '<span class="badge bg-red">Khoá</span>';
+            return '<span class="badge bg-red">Hết sản phẩm</span>';
     },
     formatNumber: function (number, precision) {
         if (!isFinite(number)) {
@@ -125,21 +125,21 @@
         a[0] = a[0].replace(/\d(?=(\d{3})+$)/g, '$&,');
         return a.join('.');
     },
-    unflattern: function (arr) {
-        var map = {};
-        var roots = [];
-        for (var i = 0; i < arr.length; i += 1) {
-            var node = arr[i];
-            node.children = [];
-            map[node.Id] = i; // use map to look-up the parents
-            if (node.ParentId !== null) {
-                arr[map[node.ParentId]].children.push(node);
-            } else {
-                roots.push(node);
-            }
-        }
-        return roots;
-    }
+    //unflattern: function (arr) {
+    //    var map = {};
+    //    var roots = [];
+    //    for (var i = 0; i < arr.length; i += 1) {
+    //        var node = arr[i];
+    //        node.children = [];
+    //        map[node.Id] = i; // use map to look-up the parents
+    //        if (node.ParentId !== null) {
+    //            arr[map[node.ParentId]].children.push(node);
+    //        } else {
+    //            roots.push(node);
+    //        }
+    //    }
+    //    return roots;
+    //}
 }
 
 $(document).ajaxSend(function (e, xhr, options) {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebAspCore.Utilities.DTOs;
 using WebAspCore.ViewModel.ViewModels;
+using WebAspCore.ViewModel.ViewModels.Products;
 
 namespace WebAspCore.Models.ProductViewModels
 {

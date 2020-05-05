@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using WebAspCore.Data.Context;
 using WebAspCore.Data.Entities;
+using WebAspCore.Extensions;
 using WebAspCore.Helpers;
 using WebAspCore.Services.Implementation;
 using WebAspCore.Services.Interfaces;
@@ -34,7 +35,7 @@ namespace WebAspCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-           
+            services.AddImageResizer();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews()
                    .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
@@ -75,6 +76,7 @@ namespace WebAspCore
             services.AddTransient<IFunctionService, FunctionService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
+            services.AddTransient<IMakeInService, MakeInService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,6 +93,7 @@ namespace WebAspCore
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseImageResizer();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -101,12 +104,13 @@ namespace WebAspCore
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                  name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                  );
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                    name: "areas",
-                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                    );
+              
             });
 
           

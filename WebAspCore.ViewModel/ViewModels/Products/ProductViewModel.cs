@@ -64,5 +64,12 @@ namespace WebAspCore.ViewModel.ViewModels.Products
         public DateTime DateModified { set; get; }
 
         public Status Status { set; get; }
+
+        public int MakeInId { get; set; }
+        public string MakeInName { get; set; }
+        public MakeInViewModel MakeInViewModel { get; set; }
+        public List<ProductTypeViewModel> ProductTypeList { get; set; }
+
+        public List<ImageCheckViewModel> ImageList = new List<ImageCheckViewModel>();
     }
 }

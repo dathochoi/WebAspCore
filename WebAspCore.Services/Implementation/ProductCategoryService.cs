@@ -7,9 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using WebAspCore.Data.Context;
 using WebAspCore.Data.Entities;
+using WebAspCore.Data.Enums;
 using WebAspCore.Services.AutoMapper;
 using WebAspCore.Services.Interfaces;
+using WebAspCore.Utilities.DTOs;
 using WebAspCore.ViewModel.ViewModels;
+using WebAspCore.ViewModel.ViewModels.Products;
 
 namespace WebAspCore.Services.Implementation
 {
@@ -93,6 +96,40 @@ namespace WebAspCore.Services.Implementation
                 listvm.Add(vm);
             }
             return listvm;
+        }
+
+        public PagedResult<ProductCategoryViewModel> GetAllPaging(string keyword, int page, int pageSize)
+        {
+            var query = _context.ProductCategories.Where(x => x.Status == Status.Active || x.Status == Status.InActive);
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                query = query.Where(x => x.Name.Contains(keyword));
+            }
+            int totalRow = query.Count();
+
+            query = query.OrderByDescending(x => x.Name)
+                .Skip((page - 1) * pageSize).Take(pageSize);
+
+            var data = query.ToList();
+
+            List<ProductCategoryViewModel> listProductCategoryVM = new List<ProductCategoryViewModel>();
+            foreach (var item in data)
+            {
+                var vm = new ProductCategoryViewModel();
+                vm.Id = item.Id;
+                vm.Name = item.Name;
+                vm.Status = item.Status;
+                listProductCategoryVM.Add(vm);
+            }
+
+            var paginationSet = new PagedResult<ProductCategoryViewModel>()
+            {
+                Results = listProductCategoryVM,
+                CurrentPage = page,
+                RowCount = totalRow,
+                PageSize = pageSize
+            };
+            return paginationSet;
         }
 
         public async Task<List<ProductCategoryViewModel>> GetAllVC()
