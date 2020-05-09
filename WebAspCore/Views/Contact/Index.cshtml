@@ -1,0 +1,76 @@
+﻿@using WebAspCore.ViewModel.ViewModels.Systems 
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ConntactViewModel;
+@section Styles{
+    <link href="~/app-client/details/myStyle.css" rel="stylesheet" />
+}
+@section Scripts{
+    <script src="https://kit.fontawesome.com/cc52c698b6.js" crossorigin="anonymous"></script>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            var uluru = { lat: @Model.Lat, lng: @Model.Lag };
+            // The map, centered at Uluru
+            var map = new google.maps.Map(
+                document.getElementById('map'), { zoom: 18, center: uluru });
+            // The marker, positioned at Uluru
+            var marker = new google.maps.Marker({ position: uluru, map: map });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMhWp5DdfDhxtS8kvuXmLL1_EvwKUWxis&callback=initMap">
+    </script>
+}
+<!-- Contact Section Begin -->
+<section class="contact spad">
+    <div class="container">
+        <div class="text-center about">
+            <h2>Giới thiệu</h2>
+            <p>
+                @Model.Description;
+                @*Copy your kit's code into the of each template or page in your project where you want to use Font Awesome. Not sure how to do that or need more guidance? We've got an example file to show you exactly where to reference your kit.*@
+            </p>
+        </div>
+        <div class="row infos">
+            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                <div class="contact__widget">
+                    <a href="@Model.LinkFB" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                        <h4>@Model.NameWebsite</h4>
+                    </a>
+                    @*<p>@Model.NameWebsite</p>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                <div class="contact__widget">
+                    <i class="fas fa-phone"></i>
+                    <h4>Số điện thoại</h4>
+                    <p>@Model.PhoneNumber</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                <div class="contact__widget">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h4>Địa chỉ</h4>
+                    <p>@Model.Address</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                <div class="contact__widget">
+                    <i class="far fa-envelope"></i>
+                    <h4>Email</h4>
+                    <p>@Model.Email</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section End -->
+<!-- Map Begin -->
+<div id="map"></div>
+
+<!-- Map End -->

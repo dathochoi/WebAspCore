@@ -37,5 +37,7 @@ namespace WebAspCore.Data.Entities
 
         [StringLength(255)]
         public string Node { get; set; }
+        [Required]
+        public string Email { get; set; }
     }
 }

@@ -63,7 +63,7 @@
                     <br />
 
                     <!-- sidebar menu -->
-                  
+
                     @await Component.InvokeAsync("SideBar")
                     <!-- /sidebar menu -->
                     <!-- /menu footer buttons -->
@@ -94,73 +94,14 @@
                         </div>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="">
+                            @*<li class="">
                                 @await Html.PartialAsync("_LoginPartial")
-                            </li>
+                            </li>*@
 
-                            <li role="presentation" class="dropdown">
-                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span class="badge bg-green">6</span>
+                            <li >
+                                <a href="/Admin/Login/Logout" >
+                                    <i class="fas fa-sign-out-alt">Logout</i>
                                 </a>
-                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                    <li>
-                                        <a>
-                                            <span class="image"><img src="/admin-side/images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image"><img src="/admin-side/images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image"><img src="/admin-side/images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>John Smith</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a>
-                                            <span class="image"><img src="/admin-side/images/img.jpg" alt="Profile Image" /></span>
-                                            <span>
-                                                <span>@User.GetSpecificClaim("FullName")</span>
-                                                <span class="time">3 mins ago</span>
-                                            </span>
-                                            <span class="message">
-                                                Film festivals used to be do-or-die moments for movie makers. They were where...
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="text-center">
-                                            <a>
-                                                <strong>See All Alerts</strong>
-                                                <i class="fa fa-angle-right"></i>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
                             </li>
                         </ul>
                     </nav>
@@ -232,12 +173,9 @@
 
 
     <script src="~/lib/bootbox.js/bootbox.js"></script>
-
+    <script src="https://kit.fontawesome.com/cc52c698b6.js" crossorigin="anonymous"></script>
     <script src="~/app/shared/lib.js"></script>
     <!-- Custom Theme Scripts -->
-    @*<script src="~/admin-side/js/custom.js"></script>*@
-    @*<script src="~/admin-side/New folder/js/custom.js"></script>*@
-    @*<script src="~/admin-side/build/js/custom.js"></script>*@
     <script src="~/admin-side/build/js/custom.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>

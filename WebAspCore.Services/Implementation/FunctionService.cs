@@ -23,7 +23,7 @@ namespace WebAspCore.Services.Implementation
         }
         public async Task<List<FunctionViewModel>> GetAll()
         {
-            List<Function> items = await _context.Functions.ToListAsync();
+            List<Function> items = await _context.Functions.OrderBy(x=>x.SortOrder).ToListAsync();
             List<FunctionViewModel> listFunctionViewModel = new List<FunctionViewModel>();
           
             for (int i = 0; i < items.Count; i++)

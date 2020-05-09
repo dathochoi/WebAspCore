@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng kí </title>
+    <!-- Bootstrap -->
+    <link href="~/admin-side/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/admin-side/vendors/fontawesome/css/font-awesome.css" rel="stylesheet" />
+    <!-- NProgress -->
+    <link href="~/admin-side/vendors/nprogress/nprogress.css" rel="stylesheet" />
+    <!-- Animate.css -->
+    <link href="~/admin-side/vendors/animate.css/animate.css" rel="stylesheet" />
+    <link href="~/lib/notifyjs-master/dist/styles/metro/notify-metro.css" rel="stylesheet" />
+
+    <link href="~/admin-side/build/css/custom.css" rel="stylesheet" />
+</head>
+
+<body class="login">
+    <div>
+
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    <form id="frmRegister">
+                        @Html.AntiForgeryToken()
+                        <h1>Đăng kí</h1>
+                        <div>
+                            <label class="pull-left">UserName / Email</label>
+                            <input type="email" class="form-control" name="email" placeholder="Email" id="txtEmail" required="" />
+                        </div>
+                        <div>
+                            <label class="pull-left">Họ tên</label>
+                            <input type="text" class="form-control" name="name" id="txtName" placeholder="Họ tên" required="" />
+                        </div>
+                        <div>
+                            <label class="pull-left">Password</label>
+                            <input type="password" class="form-control" name="password" id="txtPassword" placeholder="Password" required="" />
+                        </div>
+
+                        <div>
+                            <label class="pull-left">Xác nhận Password</label>
+                            <input type="password" class="form-control" name="passwordre" id="txtPasswordRe" placeholder="Xác nhận Password" required="" />
+                        </div>
+                        <div>
+                            <a class="btn btn-success submit" href="#" id="btnRegister">Đăng Kí</a>
+                            <a class="btn btn-default" href="/Admin/Login"> Đăng nhâp</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+
+                            <div class="clearfix"></div>
+                            <br />
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/admin-side/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/notifyjs-master/dist/notify.js"></script>
+    <script src="~/lib/notifyjs-master/dist/styles/metro/notify-metro.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/localization/messages_vi.js"></script>
+
+    <script src="~/app/shared/lib.js"></script>
+
+    <script src="~/app/Login/register.js"></script>
+    <script>
+        var register = new registerController();
+        register.init();</script>
+</body>
+</html>
+

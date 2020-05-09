@@ -22,3 +22,48 @@
    // font-size: 18px;*/
     color: #777777;
 }
+
+.infos h4 {
+    color: #1c1c1c;
+    font-weight: 700;
+    margin-bottom: 6px;
+    margin-top: 18px;
+}
+
+.infos h4 {
+    color: #1c1c1c;
+    font-weight: 700;
+    margin-bottom: 6px;
+    margin-top: 18px;
+}
+.infos p {
+    font-size:1.2rem;
+}
+.about{
+    margin: 50px;
+
+}
+.about h2 {
+     color: #1c1c1c;
+     font-weight: 700;
+     margin-bottom: 6px;
+     margin-top: 18px;
+}
+.contact__widget i {
+    font-size: 30px;
+}
+
+.spad{
+    margin-bottom:100px;
+}
+
+#map {
+    height: 800px; /* The height is 400 pixels */
+    width: 100%; /* The width is the width of the web page */
+}
+
+/*bug hien thi smartphone*/
+.product_top_bar {
+    display:grid;
+}
+    /*end bug*/

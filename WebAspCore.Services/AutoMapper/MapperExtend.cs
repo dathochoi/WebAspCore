@@ -5,7 +5,7 @@ using WebAspCore.Data.Entities;
 using WebAspCore.Utilities.Helpers;
 using WebAspCore.ViewModel.ViewModels;
 using WebAspCore.ViewModel.ViewModels.Products;
-
+using WebAspCore.ViewModel.ViewModels.Systems;
 
 namespace WebAspCore.Services.AutoMapper
 {
@@ -170,5 +170,47 @@ namespace WebAspCore.Services.AutoMapper
         //{
 
         //}
+
+        public static Systems VMToSystems(SystemsViewModel vm)
+        {
+            Systems s = new Systems();
+            s.Id = vm.Id;
+            s.Name = vm.Name;
+            s.FullName = vm.FullName;
+            s.PhongNumber = vm.PhoneNumber;
+            s.Address = vm.Address;
+            s.IconLogo = vm.IconLogo;
+            s.ImageCover = vm.ImageCover;
+            s.Lng = vm.Lng;
+            s.Lat = vm.Lat;
+            s.LinkFaceBook = vm.LinkFaceBook;
+            s.LinkInstargram = vm.LinkInstargram;
+            s.Descaription = vm.Descaription;
+            s.NameWebsite = vm.NameWebsite;
+            s.Node = vm.Node;
+            s.Email = vm.Email;
+            return s;
+        }
+
+        public static SystemsViewModel SystemsToVM(Systems vm)
+        {
+            SystemsViewModel s = new SystemsViewModel();
+            s.Id = vm.Id;
+            s.Name = vm.Name;
+            s.FullName = vm.FullName;
+            s.PhoneNumber = vm.PhongNumber;
+            s.Address = vm.Address;
+            s.IconLogo = vm.IconLogo;
+            s.ImageCover = vm.ImageCover;
+            s.Lng = vm.Lng;
+            s.Lat = vm.Lat;
+            s.LinkFaceBook = vm.LinkFaceBook;
+            s.LinkInstargram = vm.LinkInstargram;
+            s.Descaription = vm.Descaription;
+            s.NameWebsite = vm.NameWebsite;
+            s.Node = vm.Node;
+            s.Email = vm.Email;
+            return s;
+        }
     }
 }

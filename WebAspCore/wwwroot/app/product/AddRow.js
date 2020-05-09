@@ -148,6 +148,10 @@
             empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); // button -> td -> tr.
         }
 
+        function formatNumber(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
+
         // function to extract and submit table data.
         //function submit() {
         //    var myTab = document.getElementById('empTable');

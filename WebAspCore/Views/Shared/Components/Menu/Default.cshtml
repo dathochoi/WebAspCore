@@ -1,0 +1,12 @@
+﻿@using  WebAspCore.ViewModel.ViewModels.Products
+@model List<MakeInViewModel>
+
+@foreach (var item in Model)
+{
+
+    @*<li class="nav-item">
+            <a class="nav-link" href="Contact">@item.Name</a>
+        </li>*@
+    <option  value="@item.Id">@item.Name</option>
+
+}

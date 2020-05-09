@@ -112,11 +112,11 @@
                     $('#ddlMakeInIdM').val(data.MakeInId);
                     $('ddlTagIdM').val(data.ta);
                     $('#txtDescM').val(data.Description);
-                    $('#txtUnitM').val(data.Unit);
+                    //$('#txtUnitM').val(data.Unit);
 
-                    $('#txtPriceM').val(data.Price);
-                    $('#txtOriginalPriceM').val(data.OriginalPrice);
-                    $('#txtPromotionPriceM').val(data.PromotionPrice);
+                    //$('#txtPriceM').val(data.Price);
+                    //$('#txtOriginalPriceM').val(data.OriginalPrice);
+                    //$('#txtPromotionPriceM').val(data.PromotionPrice);
 
                     var myTab = document.getElementById('empTable');
                     for (row = 1; row < myTab.rows.length;row++) {
@@ -203,7 +203,7 @@
                     //$('#txtMetaDescriptionM').val(data.SeoDescription);
                     //$('#txtSeoPageTitleM').val(data.SeoPageTitle);
                     //$('#txtSeoAliasM').val(data.SeoAlias);
-                    console.log(data.ProductTypeList.length);
+                   // console.log(data.ProductTypeList.length);
                     CKEDITOR.instances.txtContent.setData(data.Content);
                     $('#ckStatusM').prop('checked', data.Status == 1);
                     $('#ckHotM').prop('checked', data.HotFlag);
@@ -277,11 +277,11 @@
 
 
                 //var categoryId = 1;
-                var price = $('#txtPriceM').val();
                 //var price = $('#txtPriceM').val();
-                var originalPrice = $('#txtOriginalPriceM').val();
-                var promotionPrice = $('#txtPromotionPriceM').val();
-                var tags = $('#txtTagM').val();
+                ////var price = $('#txtPriceM').val();
+                //var originalPrice = $('#txtOriginalPriceM').val();
+                //var promotionPrice = $('#txtPromotionPriceM').val();
+                //var tags = $('#txtTagM').val();
 
                 //console.log("aasaaa");
                 $.ajax({
@@ -294,15 +294,15 @@
                         Name: name,
                         CategoryId: categoryId,
                         Image: '',
-                        Price: price,
-                        OriginalPrice: originalPrice,
-                        PromotionPrice: promotionPrice,
+                        //Price: price,
+                        //OriginalPrice: originalPrice,
+                        //PromotionPrice: promotionPrice,
                         Description: description,
                         Content: content,
                         HomeFlag: showHome,
                         HotFlag: hot,
-                        Tags: tags,
-                        Unit: unit,
+                        //Tags: tags,
+                        //Unit: unit,
                         Status: status,
                         MakeInId: makeInId,
                         ProductTypeList: arrProductType
@@ -321,7 +321,7 @@
                         $("#modal-add-edit").modal("hide");
                         resetFrormMaintainnance();
                         lib.stopLoading();
-                        loadData(true);
+                        loadData();
                     },
                     error: () => {
                         lib.notify("Sản phẩm lưu thất bại", "error");
@@ -460,11 +460,11 @@
         loadCategories();
         loadMakeIns();
         $('#txtDescM').val('');
-        $('#txtUnitM').val('');
+        //$('#txtUnitM').val('');
 
-        $('#txtPriceM').val('0');
-        $('#txtOriginalPriceM').val('');
-        $('#txtPromotionPriceM').val('');
+        //$('#txtPriceM').val('0');
+        //$('#txtOriginalPriceM').val('');
+        //$('#txtPromotionPriceM').val('');
         //addRow.init();
         //$('#txtImageM').val('');
 
@@ -581,7 +581,7 @@
                         Name: item.Name,
                         Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25 />' : '<img src="' + item.Image + '" width=25 />',
                         CategoryName: item.CategoryId != "" ? item.ProductCategory.Name : " ",
-                        Price: lib.formatNumber(item.Price, 0),
+                        //Price: lib.formatNumber(item.Price, 0),
                         CreatedDate: lib.dateTimeFormatJson(item.DateCreated),
                         Status: lib.getStatus(item.Status)
                     });
@@ -603,6 +603,7 @@
             }
         });
     }
+   
 
     function wrapPaging(recordCount, callBack, changePageSize) {
         var totalsize = Math.ceil(recordCount / lib.configs.pageSize);

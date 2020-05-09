@@ -42,7 +42,7 @@
                 //alert(res);
                 if (res.Success) {
                     
-                    window.location.href = '/Admin/Home/Index';
+                    window.location.href = '/Admin/Product';
                 }
                 else {
                     alert("Login fail");
@@ -50,4 +50,6 @@
             }
         })
     }
+
+
 }

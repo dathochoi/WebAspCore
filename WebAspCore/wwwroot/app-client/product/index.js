@@ -1,9 +1,9 @@
 ﻿var productController = function () {
     var hotFlag = false;
-    var makeInId = 0;
+   
     var oldsize = 0;
     this.initialize = function () {
-        
+        //loadMakeIns();
        // loadCategories();
         loadData();
         registerEvent();
@@ -11,21 +11,25 @@
         
     }
     function registerEvent() {
-        $('#hotFlag').on('click', function () {
-            hotFlag = true;
-            makeInId = 0;
-            lib.configs.pageIndex = 1;
-            loadData();
-        });
-        $('.makeIn').on('click', function () {
-            hotFlag = false;
-            makeInId = $(this).data('id');
+        //$('#hotFlag').on('click', function () {
+        //    hotFlag = true;
+        //    makeInId = 0;
+        //    lib.configs.pageIndex = 1;
+        //    loadData();
+        //});
+        $('#ddlMakeInSearch').on('change', function () {
+            //hotFlag = false;
+            //makeInId = $(this).data('id');
             lib.configs.pageIndex = 1;
             loadData();
         });
 
         $('#btnSearch').on('click', function () {
             lib.configs.pageIndex = 1;
+            loadData();
+        });
+        $('#ckHot').on('change', function () {
+            hotFlag = !hotFlag;
             loadData();
         });
 
@@ -49,8 +53,9 @@
                     categoryId: $(this).data("id"),
                     keyword: $('#txtKeyword').val(),
                     page: lib.configsClient.pageIndex,
-                    pageSize: lib.configsClient.pageSize
-
+                    pageSize: lib.configsClient.pageSize,
+                    hotFlag: hotFlag,
+                    makeInId: $("#ddlMakeInSearch").val()
                    
                 },
                 url: "/Product/GetAllPaging",
@@ -73,6 +78,7 @@
                         if (render != '') {
                             $('#tbl-content').html(render);
                         }
+                        $('#paginationUL').show();
                         wrapPaging(res.RowCount, function () {
                             loadData();
                         }, false);
@@ -80,7 +86,7 @@
                     else {
                             
                             $('#tbl-content').html("Không tìm thấy sản phẩm");
-
+                            $('#paginationUL').hide();
                     }
                 },
                 error: function (status) {
@@ -102,7 +108,7 @@
                 pageSize: lib.configsClient.pageSize,
                 hotFlag: hotFlag,
 
-                makeInId: makeInId
+                makeInId: $("#ddlMakeInSearch").val()
             },
             url: "/Product/GetAllPaging",
             dataType: 'json',
@@ -123,12 +129,14 @@
                     if (render != '') {
                         $('#tbl-content').html(render);
                     }
+                    $('#paginationUL').show();
                     wrapPaging(res.RowCount, function () {
                         loadData();
                     }, isPageChanged);
                 }
                 else {
                     $('#tbl-content').html("Không tìm thấy sản phẩm");
+                    $('#paginationUL').hide();
                 }
             },
             error: function (status) {
@@ -164,6 +172,27 @@
 
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+
+    function loadMakeIns() {
+        $.ajax({
+            type: "GET",
+            url: "/Product/GetAllMakeIns",
+            dataType: 'json',
+            success: function (res) {
+                console.log("get all makein" + res.length);
+                var render = "<option value=''> -- Xuất Xứ --  </option>";
+                $.each(res, function (i, item) {
+                    render += "<option value='" + item.Id + "'>" + item.Name + "</option>"
+                });
+                $('#ddlMakeInSearch').html(render);
+              
+            },
+            error: function (status) {
+                console.log(status);
+                lib.notify("Không thể hiển thị danh sách xuất xứ", "error");
+            }
+        });
     }
 
 }

@@ -248,7 +248,7 @@ namespace WebAspCore.Services.Implementation
             }
             if( hotFlag == true)
             {
-                query = query.Where(x => x.HomeFlag == true);
+                query = query.Where(x => x.HotFlag == true);
             }
 
             //if(saleFlag == true )

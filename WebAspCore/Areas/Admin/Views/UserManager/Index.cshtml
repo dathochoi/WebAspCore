@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebAspCore.ViewModel.ViewModels.Account.UserViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+@section Scripts{
+
+    <script src="~/app/Login/user.js"></script>
+    
+    <script>
+        var userController = new UserController();
+        userController.init();</script>
+}
+<h2>Danh sách tài khoản </h2>
+
+<table class="table table-striped">
+    @Html.AntiForgeryToken()
+    <thead>
+        <tr>
+            <th>
+                <label>UserName</label>
+            </th>
+            <th>
+                <label>Họ tên</label>
+            </th>
+            <th>
+                <label>Cấp quyền</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @{
+                        string chk = " ";
+                        if (item.IsClockOut != true)
+                        {
+                            chk = "checked";
+                        }
+                    }
+                    @*@Html.DisplayFor(modelItem => item.IsClockOut)*@
+                    <input type="checkbox" class="form-check-input ckUpdate" data-id=@item.UserName  @chk>
+                </td>
+                <td>
+                    <button class="btnUpdate btn btn-danger" data-id=@item.UserName>Cập nhật</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

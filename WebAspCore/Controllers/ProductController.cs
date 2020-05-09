@@ -3,6 +3,7 @@ using WebAspCore.Models;
 using WebAspCore.Services.Implementation;
 using Microsoft.Extensions.Configuration;
 using WebAspCore.Services.Interfaces;
+using System.Threading.Tasks;
 
 namespace WebAspCore.Controllers
 {
@@ -11,15 +12,17 @@ namespace WebAspCore.Controllers
     {
         private IProductService _productService;
         private IProductCategoryService _productCategoryService;
-        
-       
+        private IMakeInService _makeInService;
+
+
         private Microsoft.Extensions.Configuration.IConfiguration _configuration;
 
-        public ProductController(IProductService productService, Microsoft.Extensions.Configuration.IConfiguration configuration, IProductCategoryService productCategoryService)
+        public ProductController(IProductService productService, Microsoft.Extensions.Configuration.IConfiguration configuration, IProductCategoryService productCategoryService, IMakeInService makeInService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
             _configuration = configuration;
+            _makeInService = makeInService;
         }
         public IActionResult Index()
         {
@@ -54,6 +57,13 @@ namespace WebAspCore.Controllers
             var model = _productService.GetDetails(id);
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllMakeIns()
+        {
+            var model = await _makeInService.GetAll();
+            return new OkObjectResult(model);
         }
     }
 }

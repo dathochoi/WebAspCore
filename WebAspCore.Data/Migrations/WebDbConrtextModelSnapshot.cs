@@ -96,8 +96,8 @@ namespace WebAspCore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("a3920a37-76fd-4fa3-8fad-2521a75d72a4"),
-                            RoleId = new Guid("af3db7ba-c472-48a1-82bd-1a491e7a03ff")
+                            UserId = new Guid("60526190-7469-4268-93d7-9a0c28be86ce"),
+                            RoleId = new Guid("2432afe2-ce2f-4150-878a-0d5011ca70ac")
                         });
                 });
 
@@ -315,24 +315,24 @@ namespace WebAspCore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("af3db7ba-c472-48a1-82bd-1a491e7a03ff"),
-                            ConcurrencyStamp = "d2dab739-ead8-4178-a3ef-30b75821d05e",
+                            Id = new Guid("2432afe2-ce2f-4150-878a-0d5011ca70ac"),
+                            ConcurrencyStamp = "7d3a37f4-f5bb-4d71-8063-b633076438b6",
                             Description = "Top manager",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("b0010a0f-c60a-496b-81f6-b7adefe6b35e"),
-                            ConcurrencyStamp = "d69f73fa-771c-4c34-84d7-f114cd71c7fd",
+                            Id = new Guid("e008f73a-a127-49ed-b67c-fd732f9d7339"),
+                            ConcurrencyStamp = "bb020442-7be4-4ead-9808-03cfd8de325f",
                             Description = "Staff",
                             Name = "Staff",
                             NormalizedName = "Staff"
                         },
                         new
                         {
-                            Id = new Guid("e5022ae8-b308-4e26-8b60-3189bd021964"),
-                            ConcurrencyStamp = "385089bc-66c5-4b83-bce1-3fd7254eda96",
+                            Id = new Guid("870368ce-f0f9-48ed-b707-8ee73c1689f9"),
+                            ConcurrencyStamp = "ffe1cb41-d628-4f90-a14a-91045ef11acb",
                             Description = "Customer",
                             Name = "Customer",
                             NormalizedName = "Customer"
@@ -415,10 +415,10 @@ namespace WebAspCore.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a3920a37-76fd-4fa3-8fad-2521a75d72a4"),
+                            Id = new Guid("60526190-7469-4268-93d7-9a0c28be86ce"),
                             AccessFailedCount = 0,
                             Balance = 0m,
-                            ConcurrencyStamp = "60bb46f6-03fc-49a3-88c4-b7b72af89aea",
+                            ConcurrencyStamp = "f5017367-91af-4d02-9932-a45913f5b49b",
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateModified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "dan@gmail.com",
@@ -426,7 +426,7 @@ namespace WebAspCore.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "dandan@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHl3W88V81Kfp+o6bUm8b4OXc0hzeK6v+AoMj2Hat9fvyLkFcRX4GtbtOSjB8HY+TA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFMO7ZyBOPAfV7zPDLTiAIQgLVIy5s5a2s6ohAuCGctYQ5v4fUvZKtkEw4XJoN9GkA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             Status = 0,
@@ -2004,6 +2004,10 @@ namespace WebAspCore.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");

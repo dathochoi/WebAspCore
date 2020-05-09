@@ -5,11 +5,12 @@
 }
 
 @section Styles{
-
-
+    <link href="~/client-side/client-details/src/checkbox.min.css" rel="stylesheet" />
     <link href="~/app-client/details/myStyle.css" rel="stylesheet" />
+
 }
 @section Scripts{
+
     <script src="~/app-client/product/index.js"></script>
     <script>
         var product = new productController();
@@ -18,25 +19,27 @@
 <section class="cat_product_area section_gap">
     <div class="container-fluid">
         <div class="row flex-row-reverse">
-            <div class="col-lg-9">
-                <div class="product_top_bar">
-                    @*<div class="left_dorp">
-                            <select class="sorting">
-                                <option value="1">Default sorting</option>
-                                <option value="2">Default sorting 01</option>
-                                <option value="4">Default sorting 02</option>
-                            </select>
-                            <select class="show">
-                                <option value="1">Show 12</option>
-                                <option value="2">Show 14</option>
-                                <option value="4">Show 16</option>
-                            </select>
-                        </div>*@
 
+            <div class="col-lg-9 ">
+               
+                <div class="product_top_bar ">
+                    <div class="left_dorp row">
+                        <label class="el-checkbox el-checkbox-lg col-xs-12 col-sm-4">
+                            <span class="margin-r">Sản phẩm HOT</span>
+                            <input id="ckHot" type="checkbox" name="check">
+                            <span class="el-checkbox-style  pull-right"></span>
+                        </label>
+
+                        <select class="sorting  col-xs-12 col-sm-8" id="ddlMakeInSearch">
+                            <option>-----------Xuất xứ-----------</option>
+                            @await Component.InvokeAsync("Menu")
+                        </select>
+
+                    </div>
                 </div>
-                <div class="latest_product_inner ">
+                <div class="latest_product_inner row" id="tbl-content">
 
-                    <div id="tbl-content" class="row"></div>
+                    @*<div id="tbl-content" class="row"></div>*@
 
                     <div class="row">
                         <nav class="cat_page mx-auto" aria-label="Page navigation example">
@@ -46,9 +49,15 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3">
                 <div class="left_sidebar_area">
                     <aside class="left_widgets cat_widgets">
+                        @*<div class="el-checkbox el-checkbox-red checkbox">
+                        <label style="100%"><input type="checkbox" />Sản phẩm HOT</label>
+                    </div>*@
+                        
+              
                         <div class="l_w_title">
                             <h3>Danh mục</h3>
                         </div>
@@ -60,6 +69,7 @@
 
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -72,7 +82,7 @@
             <a class="indexA" href="Product/Details/{{Id}}" data-id="{{Id}}">
                 {{{Image}}}
                 <h4>{{Name}}</h4>
-            
+
                 <h6>Xuất xứ: {{MakeIn}}</h6>
                 <h3 class="indexPrice">{{Price}}đ</h3>
                 <p>{{Description}}</p>

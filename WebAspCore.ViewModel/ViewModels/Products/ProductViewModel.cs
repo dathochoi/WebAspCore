@@ -21,7 +21,7 @@ namespace WebAspCore.ViewModel.ViewModels.Products
         [StringLength(255)]
         public string Image { get; set; }
 
-        [Required]
+        //[Required]
         [DefaultValue(0)]
         public decimal Price { get; set; }
 

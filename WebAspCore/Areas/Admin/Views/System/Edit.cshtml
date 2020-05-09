@@ -1,0 +1,125 @@
+﻿@model WebAspCore.ViewModel.ViewModels.Systems.SystemsViewModel
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+@section Scripts{
+
+    <script src="~/app/system/index.js"></script>
+    <script>
+        var sys = new systemsController();
+        sys.init();</script>
+}
+<h2>Chỉnh sửa</h2>
+
+<div class="row container">
+    <div class="col-md-3">
+    </div>
+        <div class="col-md-6">
+            <form asp-action="Edit" asp-area="Admin"
+                  asp-controller="System" method="post">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input asp-for="Id" class="form-control" type="hidden" />
+                    <input asp-for="Name" class="form-control" type="hidden" />
+                </div>
+
+
+                <div class="form-group row">
+                    <label asp-for="FullName" class="control-label">Họ tên</label>
+                    <input asp-for="FullName" class="form-control" value=@Model.FullName />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="NameWebsite" class="control-label">Tên Website</label>
+                    <input asp-for="NameWebsite" class="form-control" value=@Model.NameWebsite />
+                    <span asp-validation-for="NameWebsite" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
+                    <input asp-for="PhoneNumber" class="form-control" value=@Model.PhoneNumber />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Address" class="control-label">Địa chỉ</label>
+                    <input asp-for="Address" class="form-control" value=@Model.Address />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Lat" class="control-label">Lat </label>
+                    <input asp-for="Lat" class="form-control" value=@Model.Lat />
+                    <span asp-validation-for="Lat" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Lng" class="control-label">Lng</label>
+                    <input asp-for="Lng" class="form-control" value=@Model.Lng />
+                    <span asp-validation-for="Lng" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Email" class="control-label">Email</label>
+                    <input asp-for="Email" class="form-control" value=@Model.Email />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="LinkFaceBook" class="control-label">Link Facebook</label>
+                    <input asp-for="LinkFaceBook" class="form-control" value=@Model.LinkFaceBook />
+                    <span asp-validation-for="LinkFaceBook" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="LinkInstargram" class="control-label">Link Instagram</label>
+                    <input asp-for="LinkInstargram" class="form-control" value=@Model.LinkInstargram />
+                    <span asp-validation-for="LinkInstargram" class="text-danger"></span>
+                </div>
+                <div class="form-group row ">
+                    <label asp-for="Descaription" class="control-label">Giới thiệu  Website</label>
+                    <textarea asp-for="Descaription" class="form-control" rows="6">@Model.Descaription</textarea>
+                    <span asp-validation-for="Descaription" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="IconLogo" class="control-label">Logo website(Size ảnh: 129 x50)</label>
+                    <input asp-for="IconLogo" class="form-control" type="hidden" value="@Model.IconLogo" id="imageLogoHidden" />
+                    @*<span asp-validation-for="IconLogo" class="text-danger"></span>*@
+                    <div class="row">
+                        <img asp-for="IconLogo" class="img-fluid" width="100" id="iconImage" data-path="" path=@Model.IconLogo src=@Model.IconLogo />
+                        <br />
+                        <div class="input-group pull-right">
+                            <input type="file" id="sbICon" class="custom-file-input " />
+                        </div><!-- /input-group -->
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="ImageCover" class="control-label">Ảnh bìa(Size ảnh :1920 x 300)</label>
+                    <input asp-for="ImageCover" class="form-control" type="hidden" value="@Model.ImageCover" id="imageBGHidden" />
+                    @*<span asp-validation-for="ImageCover" class="text-danger"></span>*@
+
+                    <div class="row">
+                        <img asp-for="ImageCover" class="col-sm-12 img-fluid" id="imageBG" data-path="" path=@Model.ImageCover src=@Model.ImageCover />
+                        <br />
+                        <div class="input-group pull-right">
+                            <input type="file" id="sbImageBG" class="custom-file-input pull-right" />
+                        </div><!-- /input-group -->
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="Node" class="control-label">Ghi chú</label>
+                    <input asp-for="Node" class="form-control" value=@Model.Node />
+                    <span asp-validation-for="Node" class="text-danger"></span>
+                </div>
+
+                <div class="form-group row">
+                    <input type="submit" value="Lưu thông tin" class="btn btn-success pull-right" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Trở về</a>
+    </div>
+

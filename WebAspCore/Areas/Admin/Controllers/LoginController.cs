@@ -8,12 +8,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebAspCore.Data.Entities;
+using WebAspCore.Data.Enums;
 using WebAspCore.ViewModel.ViewModels.Account;
 
 namespace WebAspCore.Areas.Admin.Controllers
 {
+
     [Area("Admin")]
- 
     public class LoginController : Controller
     {
         UserManager<AppUser> _userManager;
@@ -23,6 +24,9 @@ namespace WebAspCore.Areas.Admin.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
+
+        //[Route("login.html")]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
@@ -37,33 +41,90 @@ namespace WebAspCore.Areas.Admin.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-
-
-                    //var user = await _signInManager.UserManager.FindByNameAsync(model.UserName);
-                    //var roles = await _userManager.GetRolesAsync(user);
-                    //var listClaims = new List<Claim>()
-                    //{
-                    //    new Claim("Email",user.Email),
-                    //    //new Claim("FullName",user.FullName),
-                    //    //new Claim("Avatar",user.Avatar??string.Empty),
-                    //    new Claim("Roles",string.Join(";",roles))
-                    //};
-
-                    //var claimIdentity = new ClaimsIdentity(listClaims);
-                    //var userprincipal = new ClaimsPrincipal(new[] { claimIdentity });
-                    //_ = HttpContext.SignInAsync(userprincipal);
                     return new OkObjectResult(new {Success = true, Data = model });
                 }
                 if(result.IsLockedOut)
                 {
-                    return new ObjectResult(new { Success = true, Data = "User is locked" });
+                    return new ObjectResult(new { Success = true, Data = "Tài khoản bị khóa" });
                 }
                 else
                 {
-                    return new ObjectResult(new { Success = true, Data = "Login fail." });
+                    return new ObjectResult(new { Success = true, Data = "Đăng nhập thất bại" });
                 }
             }
             return new ObjectResult(new { Success = false, Data = model });
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ResetPasswordAsync()
+        {
+            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            ViewData["username"] = user.UserName;
+            //  return View(user.UserName);
+            return View();
+        }
+
+        [HttpPost]
+        //[Route("logout.html")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel vm)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var user_newpas = await _userManager.ChangePasswordAsync(user, vm.OldPassword, vm.NewPassword);
+            return  new ObjectResult(user_newpas);
+        }
+
+        [HttpGet]
+        //[Route("logout.html")]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(LoginController.Index));
+        }
+
+        
+
+        [HttpGet]
+        [AllowAnonymous]
+       // [Route("register.html")]
+        public IActionResult Register()
+        {
+            //ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        //[Route("register.html")]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+           
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            //MM/dd/yyy]
+            var user = new AppUser
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                FullName = model.FullName,
+                LockoutEnabled = true,
+                Status = Status.Active
+                
+            };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                //return RedirectToAction(nameof(LoginController.Index));
+                return new OkObjectResult(new { Success = true, Data ="Đăng kí thành công, liên hệ Admin để được cấp quyền" });
+            }
+
+            // If we got this far, something failed, redisplay form
+            return BadRequest();
         }
     }
 }

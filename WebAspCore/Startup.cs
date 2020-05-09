@@ -77,6 +77,8 @@ namespace WebAspCore
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
             services.AddTransient<IMakeInService, MakeInService>();
+            services.AddTransient<ISystemsService, SystemsService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -105,11 +107,11 @@ namespace WebAspCore
             {
                 endpoints.MapControllerRoute(
                   name: "areas",
-                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                pattern: "{area:exists}/{controller=Login}/{action=Index}/{id?}"
                   );
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Product}/{action=Index}/{id?}");
               
             });
 

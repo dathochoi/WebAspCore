@@ -56,13 +56,24 @@
         <div class="top_menu row m0">
             <div class="container-fluid">
                 <div class="float-left">
-                    <p>Call Us: 012 44 5698 7456 896</p>
+                    <p>Phone:  @await Component.InvokeAsync("Phone")</p>
                 </div>
                 <div class="float-right">
                     <ul class="right_side">
                         <li>
-                            <a href="contact.html">
-                                Contact Us
+                            <a href="/Contact">
+                                Liên thệ chúng tôi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Admin/Login/Register">
+                                Đăng kí
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/Admin/Login">
+                                Đăng nhập
                             </a>
                         </li>
                     </ul>
@@ -74,7 +85,8 @@
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <a class="navbar-brand logo_h" href="index.html">
-                        <img src="~/client-side/img/logo.png" alt="">
+                        @*<img src="~/client-side/img/logo.png" alt="">*@
+                        @await Component.InvokeAsync("Logo")
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -88,50 +100,14 @@
                             <div class="col-lg-7 pr-0">
                                 <ul class="nav navbar-nav center_nav pull-right">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="index.html">Home</a>
+                                        <a class="nav-link" href="Product">Trang chủ</a>
                                     </li>
-                                    <li class="nav-item submenu dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="category.html">Shop Category</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="single-product.html">Product Details</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="checkout.html">Product Checkout</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="cart.html">Shopping Cart</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="confirmation.html">Confirmation</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item submenu dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="blog.html">Blog</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="single-blog.html">Blog Details</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item submenu dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="login.html">Login</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="tracking.html">Tracking</a>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="elements.html">Elements</a>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    @*@await Component.InvokeAsync("Menu")*@
+                                    @*<li class="nav-item">
+                                        <a class="nav-link" href="Product/Hot">Sản phẩm hot</a>
+                                    </li>*@
                                     <li class="nav-item">
-                                        <a class="nav-link" href="contact.html">Contact</a>
+                                        <a class="nav-link" href="Contact">Liên hệ</a>
                                     </li>
                                 </ul>
                             </div>
@@ -165,16 +141,16 @@
     <!--================Header Menu Area =================-->
     <!--================Home Banner Area =================-->
     <section class="banner_area">
-        <div class="banner_inner d-flex align-items-center">
+        <div class="banner_inner d-flex align-items-center" style="background:url(@await Component.InvokeAsync("Background") ) no-repeat center bottom;background-size: contain">
             <div class="container">
-                @*<div class="banner_content text-center">
-                        <h2>Shop Category Page</h2>
-                        <div class="page_link">
+                <div class="banner_content text-center">
+                   @await Component.InvokeAsync("NameWebSite")
+                        @*<div class="page_link">
                             <a href="index.html">Home</a>
                             <a href="category.html">Category</a>
                             <a href="category.html">Women Fashion</a>
-                        </div>
-                    </div>*@
+                        </div>*@
+                    </div>
             </div>
         </div>
     </section>
@@ -258,7 +234,7 @@
     <!--================ Subscription Area ================-->
     <!--================ End Subscription Area ================-->
     <!--================ start footer Area  =================-->
-    <footer class="footer-area section_gap">
+    @*<footer class="footer-area section_gap">
         <div class="container">
             <div class="row">
 
@@ -287,14 +263,14 @@
             </div>
             <div class="row footer-bottom d-flex justify-content-between align-items-center">
                 <p class="col-lg-12 footer-text text-center">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                     Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. 
                     Copyright &copy;
                     <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                     Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. 
                 </p>
             </div>
         </div>
-    </footer>
+    </footer>*@
     <!--================ End footer Area  =================-->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
