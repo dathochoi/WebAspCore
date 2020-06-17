@@ -319,7 +319,7 @@
                     success: function (res) {
                         lib.notify("Lưu sản phẩm thành công", "successs");
                         $("#modal-add-edit").modal("hide");
-                        resetFrormMaintainnance();
+                        //resetFrormMaintainnance();
                         lib.stopLoading();
                         loadData();
                     },
