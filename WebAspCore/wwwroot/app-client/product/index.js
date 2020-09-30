@@ -159,10 +159,10 @@
         $('#paginationUL').twbsPagination({
             totalPages: totalsize,
             visiblePages: 7,
-            first: 'First',
-            prev: 'Previous',
-            next: 'Next',
-            last: 'End',
+            first: 'Đầu',
+            prev: 'Trước',
+            next: 'Sau',
+            last: 'Cuối',
             onPageClick: function (event, p) {
                 lib.configsClient.pageIndex = p;
                 setTimeout(callBack(), 200);

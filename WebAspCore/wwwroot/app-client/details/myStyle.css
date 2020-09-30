@@ -66,4 +66,10 @@
 .product_top_bar {
     display:grid;
 }
+
+
     /*end bug*/
+
+.el-checkbox.el-checkbox-lg.col-xs-12.col-sm-4 {
+    transform: translateY(23%);
+}
